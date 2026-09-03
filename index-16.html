@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>آزمون دادرس | محمد امین دشتبان</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+<style>
+  :root {
+    --ink: #F2F0EC;
+    --cross: #E22440;
+    --cross-deep: #A3122A;
+    --cross-bright: #FF3355;
+    --crescent: #E22440;
+    --crescent-deep: #A3122A;
+    --gold: #F2F0EC;
+    --gold-soft: #2A2A2E;
+    --sand: #0A0A0C;
+    --sand-deep: #141416;
+    --card: #17171A;
+    --muted: #9C9994;
+    --border: #2B2A2C;
+    --good: #E22440;
+    --goodBg: #2A1216;
+    --bad: #FF3355;
+    --badBg: #2A1216;
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.4), 0 1px 1px rgba(0,0,0,0.3);
+    --shadow-md: 0 10px 28px -10px rgba(226,36,64,0.35), 0 2px 10px rgba(0,0,0,0.5);
+    --shadow-lg: 0 24px 56px -18px rgba(226,36,64,0.45), 0 6px 18px rgba(0,0,0,0.6);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1100px 520px at 85% -8%, rgba(226,36,64,0.14), transparent 60%),
+      radial-gradient(900px 460px at -5% 0%, rgba(226,36,64,0.08), transparent 55%),
+      var(--sand);
+    font-family: 'Vazirmatn', Tahoma, sans-serif;
+    direction: rtl;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .screen { min-height: 100vh; padding: 28px 16px 64px; }
+  .wrap { max-width: 780px; margin: 0 auto; animation: fadeUp .45s cubic-bezier(.2,.7,.3,1); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    .wrap { animation: none; }
+    * { transition: none !important; animation: none !important; }
+  }
+
+  .brand-banner {
+    text-align: center; padding: 10px 14px 22px; margin-bottom: 6px;
+  }
+  .brand-banner .brand-name {
+    font-size: 26px; font-weight: 900; letter-spacing: -0.01em;
+    background: linear-gradient(90deg, #fff, var(--cross-bright), #fff);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    background-size: 200% auto; animation: sheen 5s linear infinite;
+  }
+  @keyframes sheen { to { background-position: 200% center; } }
+  .brand-banner .brand-sub {
+    font-size: 11.5px; color: var(--muted); margin-top: 4px; letter-spacing: 0.02em;
+  }
+
+  .topbar { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; flex-wrap: wrap; }
+  .topbar h1 {
+    font-size: 21px; font-weight: 800; margin: 0; letter-spacing: -0.01em;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .topbar h1::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--cross-bright);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(226,36,64,0.8);
+  }
+  button { font-family: inherit; cursor: pointer; }
+  .btn-back {
+    border: 1.5px solid var(--border); background: var(--card); border-radius: 10px;
+    padding: 8px 16px; font-size: 13.5px; font-weight: 600; color: var(--ink);
+    transition: border-color .15s ease, transform .15s ease, box-shadow .15s ease;
+    box-shadow: var(--shadow-sm);
+  }
+  .btn-back:hover { border-color: var(--crescent); transform: translateX(2px); }
+  .btn-back:active { transform: scale(0.97); }
+
+  .btn {
+    border: none; border-radius: 13px; padding: 15px 22px; font-size: 15.5px; font-weight: 700;
+    transition: transform .15s cubic-bezier(.2,.7,.3,1), box-shadow .15s ease, filter .15s ease;
+    letter-spacing: -0.005em;
+  }
+  .btn-primary {
+    background: linear-gradient(155deg, var(--cross), var(--cross-deep));
+    color: #fff; box-shadow: 0 10px 24px -10px rgba(226,36,64,0.6), inset 0 1px 0 rgba(255,255,255,0.15);
+  }
+  .btn-primary:hover:not(:disabled) { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 14px 28px -10px rgba(226,36,64,0.7); }
+  .btn-primary:active:not(:disabled) { transform: translateY(0) scale(0.985); }
+  .btn-secondary {
+    background: var(--card); color: var(--ink); border: 1.5px solid var(--border); box-shadow: var(--shadow-sm);
+  }
+  .btn-secondary:hover:not(:disabled) { border-color: var(--crescent); color: var(--crescent-deep); }
+  .btn-danger { background: linear-gradient(155deg, var(--cross), var(--cross-deep)); color: #fff; }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+  .card {
+    background: var(--card); border: 1.5px solid var(--border); border-radius: 18px;
+    padding: 20px 20px; display: flex; align-items: center; gap: 16px; cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: transform .18s cubic-bezier(.2,.7,.3,1), box-shadow .18s ease, border-color .18s ease;
+    position: relative;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); border-color: var(--cross); }
+  .card:active { transform: translateY(-1px); }
+  .card-icon {
+    font-size: 26px; width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(155deg, var(--sand-deep), var(--card));
+    border: 1px solid var(--border);
+  }
+  .card-title { font-size: 16.5px; font-weight: 800; letter-spacing: -0.01em; }
+  .card-desc { font-size: 13px; color: var(--muted); margin-top: 3px; line-height: 1.6; }
+
+  input, select {
+    width: 100%; padding: 13px 15px; border-radius: 11px; border: 1.5px solid var(--border);
+    font-size: 15px; font-family: inherit; box-sizing: border-box; direction: rtl;
+    background: var(--card); color: var(--ink);
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  input:focus, select:focus {
+    outline: none; border-color: var(--cross); box-shadow: 0 0 0 4px rgba(226,36,64,0.18);
+  }
+  input::placeholder { color: #625F60; }
+  select { color-scheme: dark; }
+  option { background: var(--card); color: var(--ink); }
+
+  .hero-circle {
+    width: 84px; height: 84px; border-radius: 50%;
+    background:
+      radial-gradient(circle at 32% 28%, rgba(255,255,255,0.35), transparent 55%),
+      linear-gradient(155deg, var(--cross), var(--cross-deep));
+    margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;
+    font-size: 38px; color: #fff; font-weight: 900;
+    box-shadow: 0 16px 32px -12px rgba(226,36,64,0.65), 0 0 0 6px rgba(226,36,64,0.12);
+    position: relative;
+  }
+  .hero-circle::after {
+    content: ""; position: absolute; inset: -14px; border-radius: 50%;
+    border: 1.5px dashed rgba(226,36,64,0.35);
+  }
+  .home-title { text-align: center; margin-bottom: 44px; margin-top: 26px; }
+  .home-title h1 { font-size: 30px; font-weight: 900; margin: 0 0 10px; letter-spacing: -0.02em; }
+  .home-title h1::before { content: none; }
+  .home-title p { color: var(--muted); font-size: 15px; margin: 0; }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  .hidden { display: none !important; }
+
+  .qcard {
+    background: var(--card); border: 1.5px solid var(--border); border-radius: 16px;
+    padding: 18px 18px; margin-bottom: 14px; box-shadow: var(--shadow-sm);
+    transition: box-shadow .18s ease, border-color .18s ease;
+    direction: rtl; text-align: right;
+  }
+  .qcard:hover { box-shadow: var(--shadow-md); border-color: #3A2226; }
+  .qchapter {
+    font-size: 11.5px; color: var(--cross-bright); margin-bottom: 8px; font-weight: 700;
+    display: inline-flex; padding: 3px 10px; border-radius: 20px; background: var(--goodBg);
+    border: 1px solid rgba(226,36,64,0.25);
+  }
+  .qtext { font-size: 15px; font-weight: 700; margin-bottom: 14px; line-height: 1.8; direction: rtl; text-align: right; }
+
+  .opt-row {
+    display: flex; align-items: center; gap: 10px; padding: 11px 13px;
+    border-radius: 11px; border: 1.5px solid var(--border); cursor: pointer; font-size: 14px; margin-bottom: 8px;
+    transition: border-color .15s ease, background .15s ease;
+    direction: rtl; text-align: right;
+  }
+  .opt-row:hover { border-color: var(--cross); }
+  .opt-row input[type="radio"] { flex-shrink: 0; width: 18px; height: 18px; margin: 0; }
+  .opt-letter {
+    font-weight: 800; color: var(--muted); width: 22px; height: 22px; border-radius: 6px;
+    background: var(--sand-deep); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0;
+  }
+  .filter-chip {
+    padding: 7px 16px; border-radius: 20px; border: 1.5px solid var(--border);
+    background: var(--card); color: var(--ink); font-size: 13px; margin-left: 8px; font-weight: 600;
+    transition: all .15s ease; display: inline-block; margin-bottom: 8px;
+  }
+  .filter-chip:hover { border-color: var(--cross); }
+  .filter-chip.active {
+    background: linear-gradient(155deg, var(--cross), var(--cross-deep)); color: #fff; border-color: transparent;
+    box-shadow: 0 6px 14px -6px rgba(226,36,64,0.5);
+  }
+
+  .progressbar { height: 8px; background: var(--sand-deep); border-radius: 4px; overflow: hidden; margin-bottom: 16px; border: 1px solid var(--border); }
+  .progressbar-fill {
+    height: 100%; border-radius: 4px; transition: width 0.35s cubic-bezier(.2,.7,.3,1);
+    background: linear-gradient(90deg, var(--cross-deep), var(--cross-bright));
+  }
+  .quiz-meta { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-bottom: 10px; align-items: center; font-weight: 600; }
+  .timer-badge { font-weight: 800; font-size: 14px; padding: 5px 12px; border-radius: 9px; font-variant-numeric: tabular-nums; }
+
+  .option-box {
+    display: flex; align-items: center; gap: 13px; padding: 15px 17px; border-radius: 13px;
+    border: 2px solid var(--border); background: var(--card); cursor: pointer; font-size: 15px;
+    line-height: 1.7; margin-bottom: 10px; box-shadow: var(--shadow-sm);
+    transition: border-color .15s ease, background .15s ease, transform .12s ease, box-shadow .15s ease;
+    direction: rtl; text-align: right;
+  }
+  .option-box:hover { border-color: var(--cross-deep); transform: translateX(-2px); }
+  .option-box.selected { border-color: var(--cross); background: var(--goodBg); box-shadow: 0 6px 16px -8px rgba(226,36,64,0.45); }
+  .option-letter-circle {
+    width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    background: var(--sand-deep); border: 1.5px solid var(--border); font-size: 13px; font-weight: 800; flex-shrink: 0;
+    transition: all .15s ease;
+  }
+  .option-letter-circle.selected { background: linear-gradient(155deg, var(--cross), var(--cross-deep)); color: #fff; border-color: transparent; }
+
+  .result-circle {
+    width: 108px; height: 108px; border-radius: 50%; margin: 0 auto 18px;
+    display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 900; color: #fff;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  .result-circle::after {
+    content: ""; position: absolute; inset: -10px; border-radius: 50%; border: 1.5px solid currentColor; opacity: 0.18;
+  }
+
+  .loading { text-align: center; padding: 100px 0; color: var(--muted); font-weight: 600; }
+  .error-text { color: var(--bad); font-size: 13px; margin-top: 8px; }
+
+  .tab-row { display: flex; gap: 8px; margin-bottom: 22px; flex-wrap: wrap; }
+  .tab-btn {
+    padding: 9px 18px; border-radius: 20px; border: 1.5px solid var(--border);
+    background: var(--card); color: var(--ink); font-size: 13px; font-weight: 700;
+    transition: all .15s ease; box-shadow: var(--shadow-sm);
+  }
+  .tab-btn:hover { border-color: var(--cross); }
+  .tab-btn.active {
+    background: linear-gradient(155deg, var(--cross), var(--cross-deep)); color: #fff; border-color: transparent;
+    box-shadow: 0 6px 14px -6px rgba(226,36,64,0.5);
+  }
+
+  .stat-card {
+    background: var(--card); border: 1.5px solid var(--border); border-radius: 18px;
+    padding: 20px 20px; flex: 1; display: flex; flex-direction: column; align-items: flex-start;
+    gap: 5px; min-width: 130px; box-shadow: var(--shadow-sm);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .stat-label { font-size: 12px; color: var(--muted); font-weight: 600; }
+  .stat-value { font-size: 25px; font-weight: 900; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+  .stat-sub { font-size: 11px; color: var(--muted); }
+  .flex-wrap-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 6px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  :focus-visible { outline: 2.5px solid var(--cross); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+/* ====================== QUESTION BANK ====================== */
+const QUESTIONS = [{"id": "q1", "chapter": "مقدمات", "question": "کدام کتاب بیان کننده ایده‌های هانری دونان برای تشکیل کمیته بین‌المللی صلیب سرخ در سال 1863 میلادی شد ؟", "options": ["خاطره های هانری دونان", "شهرکی در ایتالیا", "خاطره ای از سولفورینو", "سولفورینو"]}, {"id": "q2", "chapter": "مقدمات", "question": "در علامت کمیته بین‌المللی صلیب سرخ رنگ و نماد پرچم کدام کشور دخالت داشت ؟", "options": ["کشور عثمانی", "کشور سوییس", "کشور ایتالیا", "گزینه های الف و ب"]}, {"id": "q3", "chapter": "مقدمات", "question": "در حال حاضر تعداد کشورهای عضو جمعیت هلال احمر و صلیب سرخ جهانی چند کشور است ؟", "options": ["181 کشور", "118 کشور", "191 کشور", "119 کشور"]}, {"id": "q4", "chapter": "مقدمات", "question": "این تعریف کدام یک از اصول اساسی نهضت بین‌المللی صلیب سرخ و هلال احمر است : نهضت هیچ گونه تبعیضی نسبت به ملیت - نژاد و عقیده مذهبی یا سیاسی ندارد و تلاش می‌کند با توجه به نیاز افراد رنج آنها را التیام می‌بخشد و در انجام این کار موارد حاد و حیاتی‌تر را در اولویت قرار دهد.", "options": ["بی طرفی", "بی غرضی", "یگانگی", "جهان شمولی"]}, {"id": "q5", "chapter": "مقدمات", "question": "این تعریف کدام یک از اصول و اهداف اساسی نهضت جهانی صلیب سرخ و هلال احمر است \"همه جمعیتهای صلیب سرخ و هلال احمر در نهضت بین المللی از جایگاهی برابر برخوردارند\"", "options": ["جهان شمولی", "یگانگی", "بی غرضی", "بی طرفی"]}, {"id": "q6", "chapter": "مقدمات", "question": "کدام گزینه جزء هفت اصول اساسی هلال احمر و صلیب سرخ می‌باشد؟", "options": ["بی غرضی", "برنامه ریزی", "جهان شمولی", "گزینه های الف و ج"]}, {"id": "q7", "chapter": "مقدمات", "question": "کدام یک از اهداف چهارگانه جمعیت هلال احمر نمی‌باشد ؟", "options": ["گسترش صلح و دوستی حفظ کرامت انسان ها", "تامین احترام انسان ها", "حمایت از زندگی و سلامت انسان ها", "تلاش برای تسکین آالم انسان ها"]}, {"id": "q8", "chapter": "مقدمات", "question": "جوامع ایمن تاب آور و آماده در برابر حوادث و سوانح که به حفظ کرامت انسانی و گسترش صلح و دوستی و خدمات داوطلبانه در ایران و سراسر جهان اهتمام می‌ورزد این جمله بیانگر چیست ؟", "options": ["سند توسعه هلال احمر", "چشم انداز جمعیت هلال احمر", "ا-ا", "آیین نامه هلال احمر"]}, {"id": "q9", "chapter": "مقدمات", "question": "از تشکلهای دانش‌آموزی که در مدارس بر فعالیتهای بشردوستانه و آموزشهای امدادی تمرکز دارد کدام گزینه صحیح است ؟", "options": ["انجمن اسلامی دانش آموزی", "بسیج دانش آموزی", "کانون دانش آموزی هلال احمر", "کانون فرهنگیان"]}, {"id": "q10", "chapter": "مقدمات", "question": "کدام حادثه مبنای طرح ملی دادرس می‌باشد؟", "options": ["زلزله بم", "سیل گلستان", "آتش سوزی جنگل های بلوط", "آتش سوزی شین آباد"]}, {"id": "q11", "chapter": "مقدمات", "question": "عضویت در نهضت داوطلبانه است و درهیچ شرایطی سود آوری مشوق آن نخواهد این پیام مربوط به کدام هفت اصول اساسی است؟", "options": ["جهان شمولی", "خدمات داوطلبانه", "یگانگی", "بی غرضی"]}, {"id": "q12", "chapter": "فصل اول مخاطرات طبیعی", "question": "کشور ایران از لحاظ حادثه خیز بودن و زلزله خیز بودن جز چندمین کشورهای دنیاست ؟", "options": ["ششمین کشور حادثه خیز و دهمین کشور زلزله خیز", "دهمین کشور حادثه خیز و ششمین کشور زلزله خیز", "شانزدهمین کشور حادثه خیز و دومین کشور زلزله خیز", "دومین کشور حادثه خیز و شانزدهمین کشور زلزله خیز"]}, {"id": "q13", "chapter": "فصل اول مخاطرات طبیعی", "question": "از جمله اقدامات قبل از وقوع زلزله نمی‌باشد ؟", "options": ["ایمن سازی اجزای غیر سازه ای", "شناسایی مکان های کم خطر", "شناسایی محل کنتور های اصلی", "خروج ایمن"]}, {"id": "q14", "chapter": "فصل اول مخاطرات طبیعی", "question": "کدام مورد جز اقدامات قبل از وقوع زلزله است ؟", "options": ["تامین اقلام ضروری", "پناه گیری", "خروج ایمن", "برپایی چادر امدادی"]}, {"id": "q15", "chapter": "فصل اول مخاطرات طبیعی", "question": "تامین اقلام ضروری خانواده جز کدام اقدامات در برابر زلزله است ؟", "options": ["اقدامات قبل از وقوع زلزله", "اقدامات حین وقوع زلزله", "اقدامات بعد از وقوع زلزله", "چند روز بعد از زلزله"]}, {"id": "q16", "chapter": "فصل اول مخاطرات طبیعی", "question": "در ایمن سازی اجزای غیر سازهای کدام مورد جز اجزای غیر سازهای نمی‌باشد ؟", "options": ["سقف کاذب", "دیوار اصلی", "تجهیزات برودتی", "کشو ها و اشیا داخل آن ها"]}, {"id": "q17", "chapter": "فصل اول مخاطرات طبیعی", "question": "چرا ایمن سازی اجزای غیر سازهای در مدارس از اهمیت بالایی برخوردار است ؟", "options": ["به علت وسایل زیاد در مدرسه", "به علت بزرگ بودن مدرسه", "آسیب ندیدن دانش آموزان و کارکنان مدرسه", "چون سازه ها ضعیف هستند"]}, {"id": "q18", "chapter": "فصل اول مخاطرات طبیعی", "question": "در ایمن سازی اجزای غیر سازهای پنجرهها چه موقعیتی باید داشته باشند ؟", "options": ["در طبقه همکف باید دارای حفاظ ثابت باشد", "در طبقه همکف نباید پنجره وجود داشته باشد", "پنجره ها باید رو به خارج باز شوند", "در طبقه همکف باید دارای حفاظ ثابت نباشند"]}, {"id": "q19", "chapter": "فصل اول مخاطرات طبیعی", "question": "در ایمن سازی اجزای غیر سازهای مواد شیمیایی سمی یا قابل احتراق چگونه باید نگهداری شوند ؟", "options": ["داخل قفسه قفل دار", "در اتاقی مخصوص", "در طبقات پایین قفسه نگهداری شود", "الف و ج"]}, {"id": "q20", "chapter": "فصل اول مخاطرات طبیعی", "question": "در هنگام وقوع زلزله، اگر در طبقه همکف نزدیک در خروجی هستیم چه اقدامی باید انجام دهیم ؟", "options": ["همانجا پناه گیری کنیم", "به سرعت از محل خارج شوید", "به بقیه اطلاع دهیم که پناه گیری کنیم", "DCHانجام دهیم"]}, {"id": "q21", "chapter": "فصل اول مخاطرات طبیعی", "question": "در زمان وقوع زلزله، اگر امکان خروج از اتاق در عرض چند ثانیه وجود ندارد، بهترین اقدام کدام است ؟", "options": ["پناه گیری", "خروج ایمن", "به طبقات بالایی برویم", "به اتاق مجاور می رویم"]}, {"id": "q22", "chapter": "فصل اول مخاطرات طبیعی", "question": "پناهگیری به روش DCH شامل چه چیزهایی است ؟", "options": ["افتادن، پوشش دادن ، نگه داشتن و صبر کردن", "پوشش دادن، نگه داشتن و صبر کردن ، افتادن", "نگه داشتن و صبر کردن، افتادن ، پوشش دادن", "نگه داشتن و صبر کردن ، پوشش دادن ، افتادن"]}, {"id": "q23", "chapter": "فصل اول مخاطرات طبیعی", "question": "در هنگام وقوع زلزله اگر خواب هستید چه اقدامی باید انجام بدهید ؟", "options": ["به سرعت خارج می شویم", "چرخیدن به سمت چپ - پناه گیری کنار تخت", "چرخیدن به پهلو و جمع کردن پا در شکم و گذاشتن بالش روی صورت", "پناه گیری کنار ستون اصلی"]}, {"id": "q24", "chapter": "فصل اول مخاطرات طبیعی", "question": "در هنگام وقوع زلزله در اتومبیل همراه با خانواده خود هستید چه اقدامی انجام می‌دهید ؟", "options": ["توقف خودرو، پناه گیری کنار خودرو", "توقف خودرو در سمت راست و خاموش کردن خودرو و پناه گیری کنار خودرو", "توقف خودرو در سمت راست و خاموش کردن خودرو و ماندن داخل خودرو", "به حرکت ادامه می دهیم"]}, {"id": "q25", "chapter": "فصل اول مخاطرات طبیعی", "question": "اگر هنگام وقوع زلزله داخل آسانسور هستید، چه اقدامی باید انجام دهید ؟", "options": ["ضمن حفاظت از سر و گردن در اولین فرصت از آسانسور خارج شوید", "در اولین فرصت در طبقه همکف از آسانسور خارج شوید", "در همان آسانسور پناه گیری می کنیم", "با آسانسور به طبقات فوقانی می رویم"]}, {"id": "q26", "chapter": "فصل اول مخاطرات طبیعی", "question": "در هنگام وقوع زلزله اگر روی پله های ساختمان قرار دارید چه اقداماتی انجام می‌دهید ؟", "options": ["فورا کنار دیوار بنشینید", "از نرده فاصله نگیرید", "با کتاب یا کیف از سر و گردن محافظت کنید", "گزینه های الف و ج"]}, {"id": "q27", "chapter": "فصل اول مخاطرات طبیعی", "question": "خصوصیات نقطه تجمع ایمن شامل چه چیزهایی نمی‌باشد ؟", "options": ["دور از ساختمان مرتفع باشد", "دور از درخت ها باشد", "دور از تیر چراغ برق باشد", "در ارتفاع بالا باشد"]}, {"id": "q28", "chapter": "فصل اول مخاطرات طبیعی", "question": "هنگام وقوع سیالب در آبی که جریان دارد نباید حرکت کرد چه میزان آب توانایی شناور کردن خودروهای سواری در حال حرکت را دارد ؟", "options": ["15 سانتیمتر آب", "30 سانتیمتر آب", "60 سانتیمتر آب", "45 سانتیمتر آب"]}, {"id": "q29", "chapter": "فصل اول مخاطرات طبیعی", "question": "در اقدامات حفاظتی و مراقبتی هنگام طوفان و رعد و برق چه موقع می‌توان از منزل خارج شد ؟", "options": ["از شنیدن صدای آخرین رعد 30 دقیقه گذشته باشد", "باید تا 30 شمرده شود و بعد بیرون آمد", "باید بالفاصله از منزل خارج شد و در خودرو پناه گرفت", "به داخل جنگل برود"]}, {"id": "q30", "chapter": "فصل اول مخاطرات طبیعی", "question": "هنگام وقوع صاعقه-رعد و برق- کدام گزینه نادرست است ؟", "options": ["از رفتن به حمام خودداری شود", "از منزل خارج نشویم", "آخرین اخبار از رادیو پیگیری شود", "در زیر درخت پناه می‌گیریم"]}, {"id": "q31", "chapter": "فصل اول مخاطرات طبیعی", "question": "روش پناهگیری کم خطر و اضطراری در زلزله کدام مورد نمی باشد؟", "options": ["روی زمین افتادن - پوشش دادن سر و گردن - نگه داشتن پایه میز یا نیمکت", "پوشش دادن سر و گردن – رفتن به زیر میز - نگه داشتن پایه میز یا نیمکت", "روی زمین افتادن- پیدا کردن نقطه امن - پناهگیری", "دویدن به سمت دربهای خروجی"]}, {"id": "q32", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "کدام مورد تعریف دقیقتری از ایمنی است ؟", "options": ["پیشگیری از حوادث بالقوه ای است که سلامتی فرد و محیط یا هردو را مختل می کند", "مجموعه فرایندی که در کنترل بحران موثر است", "گزینه های الف و ب", "اقداماتی که پس از یک حادثه برای کمک به دیگران انجام می شود"]}, {"id": "q33", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "شرایط غیر ایمن در اغلب مواقع ناشی از چیست ؟", "options": ["نقص فنی دستگاه ها", "بی توجهی و خطای انسانی", "خطای محاسباتی", "قطع برق"]}, {"id": "q34", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "توصیه می‌شود نوجوانان روزانه حداقل چقدر آب بنوشند ؟", "options": ["یک لیتر", "یک و نیم لیتر", "یک تا یک و نیم نیر", "دو لیتر"]}, {"id": "q35", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "به چه علت در اسکان اضطراری از اجاق برقی و سایر لوازم پرمصرف برقی استفاده نمی‌شود ؟", "options": ["مصرف برق زیاد", "نوسانات برقی", "خطر برق گرفتگی", "خطر آتش سوزی"]}, {"id": "q36", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "تا چه زمانی پس از وقوع مخاطرات از مواد غذایی بستهبندی استفاده می‌شود ؟", "options": ["72 ساعت", "48 ساعت", "42 ساعت", "78 ساعت"]}, {"id": "q37", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "مواد غذایی کنسرو شده را قبل از مصرف چند دقیقه باید جوشاند ؟", "options": ["10 دقیقه", "20 دقیقه", "25 دقیقه", "30 دقیقه"]}, {"id": "q38", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "در صورت گزش توسط حشرات چه اقداماتی باید انجام دهید ؟", "options": ["بالفاصله به نزدیکترین مرکز بهداشتی درمانی مراجعه کنید", "فورا آن را با یخ خنک کنید", "محل گزش را با آب و صابون شستشو دهید", "محل گزش را با تیغ تمیز بازمی کنیم"]}, {"id": "q39", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "در صورت نیش زدگی با حشرات بالفاصله محل زخم را به چه مدت باید شستشو داد؟", "options": ["تا 20 دقیقه", "20 تا 25 دقیقه", "25 تا 30 دقیقه", "30 تا 35 دقیقه"]}, {"id": "q40", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "در صورت گاز گرفتگی توسط حیوانات بهترین اقدام کدام است ؟", "options": ["بالفاصله به نزدیکترین مرکز بهداشتی درمانی مراجعه کنید", "فورا آن را با یخ خنک کنید", "محل گزش را با آب و صابون شستشو دهید", "آن را پانسمان می کنیم"]}, {"id": "q41", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "چرا در خودرو پشت سری صندلی را باید با ارتفاع سر تنظیم کرد ؟", "options": ["تا بتوان به آن تکیه کرد", "دچار گرفتگی عضلات گردن نشویم", "به راحتی بتوان به پشت سر نگاه کرد", "در صورت تصادف ، احتمال جا به جا شدن مهره ها به کمترین حد برسد"]}, {"id": "q42", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "احتراق ناقص یا بد سوزی در انواع سوختهای فسیلی چه گازی تولید می‌کند ؟", "options": ["دی اکسید کربن", "مونوکسید کربن", "CO", "گزینه ب و ج"]}, {"id": "q43", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "مجموعه اقداماتی که با هدف شناسایی خطرات بالقوه محیطی و معاینه مصدوم صورت می‌گیرد چه نام دارد ؟", "options": ["علائم حیاتی", "ارزیابی", "بررسی منابع", "تعداد نیروی انسانی"]}, {"id": "q44", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "کدام گزینه جز علائم حیاتی نمی‌باشد ؟", "options": ["نبض", "تنفس", "سطح هوشیاری", "حرارت بدن"]}, {"id": "q45", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "چه علائمی نشانه ای بر وجود حیات در فرد نمی‌باشد؟", "options": ["تنفس", "درجه حرارت بدن", "نبض", "نوع صدمه"]}, {"id": "q46", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "در عملیات CPR سعی در بازگشت عملکرد کدام اعضا است ؟", "options": ["مغز", "قلب و ریه", "دستگاه تنفس", "کلیه ها"]}, {"id": "q47", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "کدام گزینه از انواع ارزیابی نیست ؟", "options": ["ارزیابی محیط", "ارزیابی علت حادثه", "ارزیابی مصدوم", "گزینه های الف و ج"]}, {"id": "q48", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "ارزیابی که پس از بررسی و تثبیت خطر انجام می‌شود چه نام دارد ؟", "options": ["ارزیابی اولیه", "ارزیابی ثانویه", "ارزیابی علت حادثه", "ارزیابی مصدوم"]}, {"id": "q49", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "در ارزیابی اولیه ابتدا چه اقدامی انجام می‌دهیم ؟", "options": ["صدا کردن و ضربه به شانه مصدوم", "ارزیابی تنفس", "ارزیابی نبض", "تماس با اورژانس"]}, {"id": "q50", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "در ارزیابی اولیه باز کردن راه هوایی را به چه صورت انجام می‌دهیم ؟", "options": ["عمل سر عقب چانه بالا", "چرخاندن گردن مصدوم", "با وسایل مخصوص", "در ارزیابی اولیه راه هوایی را باز نمی کنیم"]}, {"id": "q51", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "عمل گوش کردن حس کردن نگاه کردن در کدام یک از ارزیابیها استفاده می‌شود ؟", "options": ["اریابی ثانویه", "ارزبابی 3 م", "ارزیابی اولیه", "ارزیابی محیط"]}, {"id": "q52", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "در ارزیابی اولیه گوش کردن حس کردن و نگاه کردن چه مقدار باید طول بکشد ؟", "options": ["کمتر از 5 ثانیه", "بیشتر از 10 ثانیه", "بیشتر از 5 ثانیه و کمتر از 10 ثانیه", "30 ثانیه"]}, {"id": "q53", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "کدام یک از اجزای ارزیابی ثانویه نیست ؟", "options": ["مصاحبه و گرفتن شرح حال", "معاینه بالینی", "معاینه تکمیلی علائم حیاتی", "ارزیابی محیط"]}, {"id": "q54", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "عمل تنفس شامل چند مرحله است ؟", "options": ["سه مرحله", "دو مرحله", "چهار مرحله", "یک مرحله"]}, {"id": "q55", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "طی چه مقدار از زمان بیمار را باید از نظر صدای تنفس تعداد آن و عمق و نظم بررسی کرد ؟", "options": ["سی ثانیه", "یک دقیقه", "پانزده ثانیه", "دو دقیقه"]}, {"id": "q56", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "کدام مورد جزءزمان طالیی برای احیای قلبی ریوی می‌باشد؟", "options": ["4 تا 6 دقیقه", "10 تا 15 دقیقه", "6 تا10 دقیقه", "15 تا 20 دقیقه"]}, {"id": "q57", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "تعداد تنفس به صورت طبیعی در افراد بالغ و کودکان در یک دقیقه به چه مقدار است ؟", "options": ["بالغین 12 تا 20 بار ، کودکان 12 تا 30 بار", "بالغین 12 تا 30 بار، کودکان 20 تا 30 بار", "بالغین 20 تا 30 بار ، کودکان 12 تا 30 بار", "بالغین 12 تا 20 بار ، کودکان 20 تا 30 بار"]}, {"id": "q58", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "چرا برای گرفتن نبض بیمار از انگشت شست استفاده نمی‌کنیم ؟", "options": ["مناسب این کار است", "انگشت شصت خودش نبض دارد", "گزینه های الف و ب", "برای گرفتن دست موردنیاز است"]}, {"id": "q59", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "چرا نباید هر دو شریان کاروتید را با هم لمس کرد ؟", "options": ["تعدادش دقیق نیست", "نمی‌توان هر دو را با هم حس کرد", "در خون رسانی به مغز اشکال ایجاد می‌کند", "شمارش آن دشواراست"]}, {"id": "q60", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "کدام نبض در دو طرف نای قرار دارد ؟", "options": ["نبض پیشانی", "نبض براکیال", "نبض رادیال", "نبض کاروتید"]}, {"id": "q61", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "از کدام نبض برای لمس نبض شیرخوار استفاده می‌شود ؟", "options": ["نبض پیشانی", "نبض براکیال", "نبض رادیال", "نبض کاروتید"]}, {"id": "q62", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "در هنگام بررسی نبض ابتدا کدام گزینه اهمیت دارد ؟", "options": ["قدرت نبض", "ریتم نبض", "تعداد نبض", "محل نبض"]}, {"id": "q63", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "تعداد نبض در افراد بالغ به صورت طبیعی و در کودکان به صورت طبیعی چند بار در دقیقه است ؟", "options": ["بالغین 60 تا ،100 کودکان 80 تا 160", "بالغین 60 تا 120 ، کودکان 80 تا 140", "بالغین 60 تا ،100 کودکان 80 تا 140", "بالغین 80 تا 120 ، کودکان 80 تا 160"]}, {"id": "q64", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "دمای بدن انسان به طور طبیعی چند درجه سانتیگراد است ؟", "options": ["حدود 37", "37", "حدود 36", "36"]}, {"id": "q65", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "برای استفاده از تب سنج جیوهای ، تب سنج چه مدت باید در زیر زبان بیمار قرار گیرد ؟", "options": ["سی دقیقه", "سی ثانیه", "سه ثانیه", "سه دقیقه"]}, {"id": "q66", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "در کدام آسیب بیمار دارای پوست رنگ پریده است ؟", "options": ["مسمومیت", "نارسایی قلبی", "حمله قلبی", "سوختگی"]}, {"id": "q67", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "پوست کبود یا تیره در کدام آسیبها نمایان نمی‌شود ؟", "options": ["مسمومیت", "نارسایی قلبی", "انسداد راه تنفسی", "بیهوشی"]}, {"id": "q68", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "در گرفتن مصاحبه و شرح حال مصدوم با روش \"سردانا\" ، حرف \" ر \" نمایانگر چه چیزی است ؟", "options": ["سابقه بیماری", "نوع رخداد", "آخرین وعده غذا", "داروهای مصرفی"]}, {"id": "q69", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "در معاینه بالینی مصدوم چه مواردی مورد بررسی قرار نمی‌گیرد ؟", "options": ["تورم", "لمس دردناک", "زخم باز", "علائم حیاتی"]}, {"id": "q70", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "کدام گزینه نمایانگر مراحل احیای قلبی ریوی است ؟", "options": ["ایمن سازی صحنه - بررسی پاسخ دهی مصدوم - درخواست کمک", "بررسی پاسخ دهی - درخواست کمک - ایمن سازی صحنه", "ایمن سازی صحنه - درخواست کمک - بررسی پاسخ دهی مصدوم", "درخواست کمک - بررسی پاسخ دهی مصدوم – تماس با سازمانهای امدادی"]}, {"id": "q71", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "در احیای قلبی ریوی برای بررسی سطح پاسخ دهی بیمار چه اقدامی انجام می‌دهیم ؟", "options": ["مصدوم را بلند صدا کنید", "به شانه های مصدوم ضربه بزنید", "از او اسمش را بپرسید", "گزینه های الف و ب"]}, {"id": "q72", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "در عملیات احیای قلبی ریوی عمق فشردن قفسه سینه در بزرگسالان چه مقدار است ؟", "options": ["سه الی پنج سانتیمتر", "چهار الی شش سانتیمتر", "دو الی پنج سانتیمتر", "پنج الی شش سانتیمتر"]}, {"id": "q73", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "در احیای قلبی ریوی مجموعه زمان دو بار دمیدن درون دهان بیمار چقدر است ؟", "options": ["کمتر از دو ثانیه", "کمتر از سه ثانیه", "کمتر از چهار ثانیه", "هیچکدام"]}, {"id": "q74", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "حداقل سرعت فشردن قفسه سینه در عملیات احیای قلبی ریوی ، چند مرتبه در دقیقه است ؟", "options": ["حداقل 100 بار در دقیقه", "حداقل 150 بار در دقیقه", "حداقل 160 بار در دقیقه", "گزینه الف و ب"]}, {"id": "q75", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "سرعت فشردن قفسه سینه باید حداقل ........... و حداکثر.......... مرتبه در دقیقه باشد؟", "options": ["100و 120 مرتبه", "80 و 100 مرتبه", "90 و 130 مرتبه", "130 و 160 مرتبه"]}, {"id": "q76", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "در طول دو دقیقه چند سیکل احیای قلبی ریوی را باید برای مصدوم اجرا کرد ؟", "options": ["چهار سیکل", "دو سیکل", "پنج سیکل", "سه سیکل"]}, {"id": "q77", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "در صورت رسیدن نیروی کمکی، علت جابجایی امدادگران در زمان احیای قلبی چیست ؟", "options": ["جهت جلوگیری از خستگی امدادگران", "احیای دو نفره بهتر است", "گزینه های الف و ب", "تفاوتی نمی کند"]}, {"id": "q78", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "کدام گزینه از روشهای انجام تنفس نجات بخش نیست ؟", "options": ["دهان به دهان", "دهان به بینی", "تهویه با ابزار های تنفسی", "بالا نگه داشت پاها"]}, {"id": "q79", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "اگر امکان تنفس نجات بخش برای بزرگسالان وجود نداشت چه اقدامی انجام می‌دهید ؟", "options": ["فقط به طور مستمر تنفس می‌دهیم", "فقط به طور مستمر فشار به قفسه سینه می‌دهیم", "فقط به طور مستمر به پشت بیمار ضربه می‌زنیم", "گزینه های الف و ب"]}, {"id": "q80", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "موثرترین روش برای خروج جسم خارجی در انسداد راه هوایی خفیف کدام گزینه است ؟", "options": ["ضربه به پشت کتف بیمار", "مانور هایملیخ", "احیای قلبی و ریوی", "سرفه کردن"]}, {"id": "q81", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "در انسداد راه هوایی ضربه به پشت چگونه می‌تواند باعث رفع انسداد شود ؟", "options": ["باعث حرکت جسم خارجی به سمت پایین می‌شود", "باعث هضم راحت تر جسم خارجی می شود", "باعث تهویه هوا با فشار زیاد می شود", "باعث افزایش فشار هوا در پشت جسم خارجی می شود"]}, {"id": "q82", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "در احیای قلبی ریوی برای بررسی سطح پاسخ دهی بیمار چه اقداماتی انجام می‌دهیم؟", "options": ["مصدوم را بلند صدا می‌کنیم", "به شانه های فرد مصدوم ضربه می‌زنیم", "گزینه های الف و ب", "از او سوال می‌پرسیم"]}, {"id": "q83", "chapter": "فصل سوم احیای قلبی و ریوی )CPR)", "question": "فشردن قفسه سینه چند بار به طور متوالی و یکنواخت با شمارش بلند ادامه می‌دهیم؟", "options": ["30 بار", "20 بار", "10 بار", "15 بار"]}, {"id": "q84", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "خونریزی به چه معنا است؟", "options": ["آسیب به رگ های خونی و خروج خون از آن ها", "آسیب به ماهیچه ها و خروج خون از آن ها", "آسیب به بافت سخت بدن", "آسیب به پوست و خروج خون از آن"]}, {"id": "q85", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "کدام گزینه درباره منشاء خونریزی صحیح است؟", "options": ["خونریزی خارجی", "خونریزی داخلی", "گزینه الف و ب", "خونریزی مویرگی"]}, {"id": "q86", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "خونی که از یک شکاف پوست یا زخم قابل دیدن باشد، خونریزی------- است.", "options": ["داخلی", "خارجی", "مویرگی", "شریانی"]}, {"id": "q87", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "کدام گزینه درباره خونریزی داخلی صحیح است؟", "options": ["خروج خون از رگ های خونی-تجمع خون در فضای خالی بدن- قابل مشاهده است", "خروج خون از رگ های خونی-تجمع خون در فضای خالی بدن- قابل مشاهده نیست", "خروج خون از رگ های خونی به بیرون بدن-تجمع بخشی از خون در زیر ناخنها- قابل مشاهده است", "زخم قابل رویت – خونریزی شدید - قابل مشاهده است -------------5 یعنی، تجمع خون در فضاهای خالی بدن که قابل مشاهده نیست."]}, {"id": "q88", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "خونریزی بر اساس منشاء به چند دسته تقسیم می شود؟", "options": ["2 دسته", "3 دسته", "4 دسته", "گزینه های الف و ب"]}, {"id": "q89", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "منظور از خونریزی خارجی چیست؟", "options": ["خون که از یک شکاف پوست یا زخم به بیرون آمده و قابل دیدن باشد", "خروج خون از رگهای خونی", "گزینه الف و ب", "خروج خون از رگهای خونی بدون بیرون آمدن از سطح پوست"]}, {"id": "q90", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "و--------- جزو منشاء خونریزی هستند.", "options": ["وریدی-شریانی", "خارجی- مویرگی", "داخلی- خارجی", "داخلی- سرخرگی"]}, {"id": "q91", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "شایع ترین خونریزی های خارجی شامل:", "options": ["مویرگی- سیاهرگی-سرخرگ", "کوفتگی- بریدگی- خراشیدگی", "پارگی- ساییدگی- کبودی", "وریدی- شریانی- کوفتگی"]}, {"id": "q92", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "کدام یک از موارد زیر جزء انواع خونریزی بر اساس منشا نمی باشد؟", "options": ["داخلی", "خارجی", "سرخرگی", "گزینه های الف و ب"]}, {"id": "q93", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "کدام یک از موارد زیر جزء شایع ترین انواع خونریزی خارجی نمی باشد؟", "options": ["مویرگی", "شریانی", "کوفتگی", "سیاهرگی"]}, {"id": "q94", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "خونریزی های خارجی چند نوع است و خطرناک ترین نوع کدام است؟", "options": ["2 دسته- داخلی", "3 دسته- شریانی", "3 دسته- داخلی", "2 دسته- شریانی"]}, {"id": "q95", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در هر زخمی همیشه، خونریزی -------- وجود دارد", "options": ["مویرگی", "سرخرگی", "سیاهرگی", "داخلی"]}, {"id": "q96", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در این نوع خونریزی، خون از زخم به آرامی به بیرون تراوش می کند و معمولا پس از مدتی لخته می شود و خونریزی بند می آید", "options": ["سرخرگی", "سیاهرگی", "مویرگی", "داخلی"]}, {"id": "q97", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "شایع ترین نوع خونریزی که بر اثر جراحت های جزئی ایجاد می شود، خونریزی--------- است.", "options": ["سرخرگی", "سیاهرگی", "شریانی", "مویرگی"]}, {"id": "q98", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در کدام نوع خونریزی سریع بند می آید؟", "options": ["سرخرگی", "مویرگی", "وریدی", "سیاهرگی"]}, {"id": "q99", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "علائم خونریزی وریدی چیست؟", "options": ["رنگ خون قرمز تیره و غیر جهنده است", "رنگ خون قرمز روشن و غیر جهنده است", "کم فشار و روشن است", "هیچ کدام"]}, {"id": "q100", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در کدام یک از انواع خونریزی، خون خارج شده قرمز تیره است؟", "options": ["سرخرگی", "مویرگی", "داخلی", "سیاهرگی"]}, {"id": "q101", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در کدام یک از انواع خونریزی، خون خارج شده قرمز روشن است؟", "options": ["سرخرگی", "مویرگی", "وریدی", "سیاهرگی"]}, {"id": "q102", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در خونریزی،----------- خون به صورت جهنده خارج می شود و در خونریزی------------ خون غیر جهنده است.", "options": ["سرخرگی- سیاهرگی", "سرخرگی- مویرگی", "سیاهرگی- سرخرگی", "مویرگی- سیاهرگی"]}, {"id": "q103", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "به ترتیب رنگ خون در خونریزی شریانی------------ و درخونریزی وریدی ----------- است.", "options": ["قرمز تیره- قرمز روشن", "قرمز روشن- قرمز تیره", "قرمز- سیاه", "سیاه- قرمز"]}, {"id": "q104", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "کدام یک از خونریزی ها خطرناک تر است و اول باید آن را کنترل کرد؟", "options": ["مویرگی", "بینی", "سرخرگی", "سیاهرگی"]}, {"id": "q105", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در خونریزی های خارجی، خطرناکترین خونریزی به ترتیب---------- سپس ---------- است.", "options": ["مویرگی- سیاهرگی", "سیاهرگی- مویرگی", "سرخرگی- سیاهرگی", "سرخرگی- مویرگی"]}, {"id": "q106", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در حالت عادی ، ویژگی های خونی که در شریانها جریان دارد کدام است ؟", "options": ["اکسیژن دارد و رنگ آن قرمز تیره است", "دارای فشار کم است", "اکسیژن دارد و رنگ آن قرمز روشن است", "دارای ضربان و کم فشار است"]}, {"id": "q107", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در حالت عادی خونی که در وریدها جریان دارد چه ویژگی دارد؟", "options": ["قرمز تیره است چون اکسیژن بیشتری دارد", "دارای فشار زیاد است", "رنگ آن قرمز تیره و کم فشار است", "جهنده و روشن اسن"]}, {"id": "q108", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در خونریزی ------------- بدلیل اینکه ، این خون مستقیماً از قلب می آید و به این جهت دارای فشار است و اغلب همراه با تپش قلب به بیرون از زخم می جهد.", "options": ["سیاهرگی یا وریدی", "مویرگی", "داخلی", "سرخرگی یا شریانی"]}, {"id": "q109", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "جریان خون سیاهرگ ها فشار ------------ نسبت به خون شریان ها دارد و از زخم به بیرون-------------- .", "options": ["کمتری- می جهد", "کمتری- نمی جهد", "بیشتر – می جهد", "بیشتر – نمی جهد"]}, {"id": "q110", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "بهترین تعریف زخم کدام است؟", "options": ["هر گونه صدمه به بدن را زخم گویند", "هرگونه ضربه به بدن را زخم گویند", "از بین رفتن پیوستگی و یک پارچگی لایه های پوست را زخم می گویند", "هرگونه فشار شدید به بدن را زخم گویند"]}, {"id": "q111", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "انواع زخم عبارتند از:", "options": ["زخم باز و زخم بسته", "خراشیدگی پوست", "بریدگی پوست", "له شدگی"]}, {"id": "q112", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "زخم بازچیست؟", "options": ["زخمی که در آن آسیب و خونریزی در بافت زیر پوست ایجاد می شود", "زخمی که در آن جراحت و خونریزی مشاهده نمی شود", "زخمی که در آن آسیب و جراحت به همراه خونریزی مشاهده می شود", "هیچ کدام کامل نیست"]}, {"id": "q113", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "بافت نرم بدن شامل:", "options": ["پوست- رگ های خونی- اعصاب", "چربی- عضلات- رگ های خونی", "اعصاب- چربی- پوست", "عضلات- پوست- رگ های خونی"]}, {"id": "q114", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "زخم بسته چیست؟", "options": ["زخمی که در آن آسیب و خونریزی در بافت زیر پوست ایجاد می شود", "زخمی که در آن جراحت و خونریزی مشاهده می شود", "زخمی که در آن آسیب و جراحت به همراه خونریزی مشاهده می شود", "هیچ کدام کامل نیست"]}, {"id": "q115", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "بریدگی و ساییدگی از انواع کدام زخم ها به شمار می رود؟", "options": ["زخم باز", "زخم بسته", "هردو", "در دسته زخمها نمی باشد"]}, {"id": "q116", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "کوفتگی و کبودی از انواع کدام زخم ها به شمار می رود؟", "options": ["زخم باز", "زخم بسته", "کوفتگی جزء زخم محسوب نمی شود", "هم زخم باز و هم زخم بسته"]}, {"id": "q117", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "زخمی که به دلیل ساییدگی یا کشیده شدن پوست روی سطوح ایجاد می شود و گاهی می تواند با فرو رفتن اجسام خارجی کوچک همراه باشد، ------------ نام دارد.", "options": ["کوفتگی", "بریدگی", "له شدگی", "خراشیدگی"]}, {"id": "q118", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "زخمی که در اثر ورود اجسام تیز ایجاد می شود، لبه های صاف دارد و همراه با خونریزی است را --------------- می نامند.", "options": ["خراشیدگی", "ساییدگی", "بریدگی", "کوفتگی"]}, {"id": "q119", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "سریع ترین و موثرترین راه متوقف کردن خونریزی خارجی چیست؟", "options": ["فشار مستقیم روی محل خونریزی", "استفاده از کمپرس سرد", "بالا آوردن اندام", "استفاده از تورنیکه"]}, {"id": "q120", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در نحوه برخورد با کوفتگی چند دقیقه کمپرس سرد را روی عضو گذاشته می‌شود؟", "options": ["حداقل 20 دقیقه", "30 دقیقه", "40 دقیقه", "50 دقیقه"]}, {"id": "q121", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "چرا در مواجهه با مصدوم باید از دستکش استفاده کرد؟", "options": ["برای جلوگیری از بیماری های تنفسی", "برای جلوگیری از تماس مستقیم با خون", "برای جلوگیری از تماس مستقیم با ترشحات مصدوم", "گزینه های ب و ج"]}, {"id": "q122", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "فشار مستقیم روی محل خونریزی را تا چه مدت باید ادامه داد؟", "options": ["5 تا 10 دقیقه", "15-10 دقیقه", "فقط 5 دقیقه ی اول", "بیش از 10 دقیقه"]}, {"id": "q123", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "درصورتیکه خونریزی ادامه داشت، چه اقداماتی باید انجام داد؟", "options": ["با استفاده از چند لایه اضافی و بانداژ ادامه دهیم", "از فشار های منقطع استفاده نمایید", "به دنبال وسایل پانسمان بیشتری باشید", "میزان فشار روی محل را کمتر کنید"]}, {"id": "q124", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "کدام عبارت صحیح است؟", "options": ["خونریزی خفیف، خطری ندارد", "خونریزی های خفیف ظرف چند دقیقه کنترل می شود", "خونریزی خفیف می تواند ظرف چند دقیقه جان بیمار را به خطر اندازد", "گزینه های الف و ب"]}, {"id": "q125", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "چه زمانی نباید به مصدومان ماده غذایی و آشامیدنی از طریق دهان داد؟", "options": ["خونریزی خارجی", "خونریزی های خفیف", "خونریزی های سطحی پوست", "خونریزی های شدید"]}, {"id": "q126", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در فشار مستقیم با دست روی محل خونریزی ، کدام عبارت صحیح نیست؟", "options": ["اعمال فشار باید یکنواخت و محکم باشد", "زمان ارزشمند است، و نباید آن را با جستجوی وسایل پانسمان هدر داد", "باید احتمال عفونی شدن را در نظر داشت", "فشار نباید بصورت منقطع باشد"]}, {"id": "q127", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "علت اصلی خونریزی از بینی چیست؟", "options": ["پارگی رگ های خونی بینی", "پارگی رگ های خونی مغز", "پارگی مخاط بینی", "هیچ کدام"]}, {"id": "q128", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در اقدامات اولیه خونریزی بینی کدام مورد صحیح نیست؟", "options": ["نشاندن مصدوم و آزاد سازی پوشش های تنگ دور گردن و سینه", "توصیه به تنفس از راه دهان و فشردن قسمت نرم بینی با دو انگشت", "استفاده از کمپرس سرد در اطراف بینی", "عقب بردن سر مصدوم به مدت 10 دقیقه"]}, {"id": "q129", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "کدام گزینه در خونریزی از بینی صحیح است؟", "options": ["فرو کردن پنبه یا دستمال در بینی جهت کنترل سریع تر خونریزی", "بالا گرفتن سر و فشردن بینی", "مراجعه به مرکز درمانی پس از 15 دقیقه در صورت ادامه خونریزی", "دست زدن به بینی پس از 3 ساعت"]}, {"id": "q130", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "به فرآیندی که در آن زخم به صورت استریل پوشانده می شود، --------- می گویند.", "options": ["بانداژ", "پانسمان", "گاز استریل", "کمک های اولیه"]}, {"id": "q131", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "ترتیب کدام یک درباره مراحل پانسمان صحیح است؟", "options": ["شستشوی زخم با سرم شستشو یا آب تمیز- بستن پانسمان با با باند نواری یا باند کشی یا باند سه گوش", "آشکار کردن زخم- تعویض گازهای کاملا خونی- شستشوی زخم با سرم شستشو یا آب تمیز- بستن پانسمان با با باند نواری یا باند کشی یا باند سه گوش", "آشکار کردن زخم- شستشوی زخم با سرم شستشو یا آب تمیز- بستن پانسمان با با باند نواری یا باند کشی یا باند سه گوش", "آشکار کردن زخم- شستشوی زخم با سرم شستشو یا آب تمیز- قرار دادن گاز یا پارچه ی تمیز متناسب- بستن پانسمان با با باند نواری یا باند کشی یا باند سه گوش"]}, {"id": "q132", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "جمله زیر تعریف کدام یک از اقدامات است؟ \"اقدامی است که باعث محکم و ثایت شدن پانسمان، کنترل تورم، خونریزی و ثابت نگهداشتن آتل می شود\"", "options": ["بانداژ", "کمپرس فشاری", "کمپرس سرد", "بانداژ"]}, {"id": "q133", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در برخورد با کوفتگی کدام یک از اقدامات زیر را نباید انجام داد؟", "options": ["ثابت کردن اندام", "استفاده از بانداژ فشاری", "استفاده از کمپرس گرم", "استفاده از کمپرس سرد"]}, {"id": "q134", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "و ----------- و ----------- از قواعد مهم در بانداژ محسوب می شود:", "options": ["انتخاب باند مناسب- شروع بانداژ از ابتدا به انتهای عضو- مشخص بودن ناخن ها", "کنترل گردش خون، حس و حرکت قبل و بعد از بانداژ- نشاندن یا خواباندن مصدوم حین بانداژ- قرار دادن باند روی زخم", "شروع بانداژ از انتها به ابتدای عضو- نشاندن یا خواباندن مصدوم حین بانداژ- محکم یا شل نبودن بانداژ", "مشخص بودن ناخن ها- بررسی گردش خون، حس و حرکت قبل و بعد از بانداژ- بی حرکت کردن عضو با محکم بستن بانداژ"]}, {"id": "q135", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در صورتیکه هنگام بانداژ بخواهیم گردش خون انگشت را بررسی کنیم چه اقداماتی باید انجام داد؟", "options": ["با انگشت روی ناخن را فشار زیادی دهیم و بالفاصله برداریم", "با انگشت روی ناخن را کمی فشار دهیم و بالفاصله برداریم", "با انگشت روی ناخن را کمی فشار و مدتی روی آن نگه داریم", "با انگشت روی ناخن را فشار زیادی وارد کنیم و مدتی روی آن نگه داریم"]}, {"id": "q136", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "این نوع باند در حقیقت یک پارچه مربع شکل است که ازامتداد یکی از قطرها به دو قسمت تقسیم شده است", "options": ["باند سه گوش -مثلثی", "باند مربعی", "باند نواری", "باند کشی"]}, {"id": "q137", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "این باند در اندازه های مختلفی وجود دارد و برای هر عضو باید از نوع مناسب آن استفاده کرد.", "options": ["باند سه گوش", "باند نواری", "باند کشی", "الاستیک باند"]}, {"id": "q138", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "این باند جهت ایجاد محدودیت حرکت در عضو و جلوگیری از تورم آن استفاده می شود.", "options": ["باندکشی", "الاستیک باند", "باندسه گوش", "باندنواری"]}, {"id": "q139", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "کدام یک از موارد زیر صحیح نیست؟", "options": ["در برخورد با زخم همیشه باید تلاش کرد تا جسم خارجی، خارج شود", "در هر زخم، خونریزی مویرگی وجود دارد", "سریع ترین و موثرترین راه متوقف کردن خونریزی خارجی، فشار مستقیم در محل خونریزی است", "در ابتداء باید خونریزی سرخرگی را کنترل کرد"]}, {"id": "q140", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در هنگام وجود زخم در کف یا پشت دست چه نکاتی باید رعایت شود؟", "options": ["ابتدا باند را یک مرتبه به دور مچ دست پیچیده و ادامه آن را از روی پانسمان عبور دهید- تا دو مرتبه باند را از روی کف و پشت دست عبور داده و مجددا به سمت مچ ببرید", "در ادامه باند را تا انتها به صورت دورانی دورکف دست بپیچانید و انتهای باند را در پشت مچ با سنجاق قفلی یا چسب محکم کنید", "در ادامه باند را تا انتها به صورت هشت انگلیسی دور مچ و کف دست بپیچانید و انتهای باند را در کف دست با سنجاق قفلی یا چسب محکم کنید", "گزینه های الف و ج"]}, {"id": "q141", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "اولویت در بانداژ دست مصدوم)با استفاده از باند سه گوش( کدام است؟", "options": ["مصدوم را قبل از هر کاری روی زمین بخوابانید", "باند سه گوش را به گونه ای روی بدن مصدوم بگذارید که قاعده آن روی دست سالم و راس آن به طرف دست آسیب دیده باشد", "گوشه پایینی باند را از زیر دست آسیب دیده به سمت بالا بیاورید و گوشه بالایی باند را از پشت گردن مصدوم عبور دهید", "دست مصدوم را به گونه ای قرار دهید که با بازو زاویه قائمه بسازد"]}, {"id": "q142", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "برای بستن زخم در ناحیه زانو، کدام باند مناسب تر است؟", "options": ["باندنواری", "باندسه گوش", "باندکشی", "باندکراواتی"]}, {"id": "q143", "chapter": "فصل چهارم آسیب های بافت نرم", "question": "در ابتدای بانداژ سر با استفاده از باند سه گوش، قاعده ی باند را چه میزان باید تا کرد؟", "options": ["2 سانتی متر", "5 سانتی متر", "3 سانتی متر", "تفاوتی ندارد"]}, {"id": "q144", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "استخوان لگن خاصره جز کدام دسته از شکلهای استخوانی است؟", "options": ["استخوان دراز", "استخوان کوتاه", "استخوان پهن", "استخوان نامنظم"]}, {"id": "q145", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "تغییر در پیوستگی استخوان را چه می‌گویند؟", "options": ["در رفتگی", "شکستگی", "پیچ خوردگی", "کوفتگی"]}, {"id": "q146", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "کدام تعریف زیر نادرست است؟", "options": ["در شکستگی ساده استخوان فقط ترک برمیدارد و تغییر شکل ندارد", "در شکستگی کامل بسته ، استخوان شکسته شده در تماس با محیط بیرون است و پوست روی آن سالم نیست", "در شکستگی کامل باز استخوان شکسته شده باعث آسیب به بافت پوست می‌شود", "در شکستگی کامل بسته است استخوان در تماس با محیط بیرون نیست و پوست روی آن سالم است"]}, {"id": "q147", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "در کدام مورد احتمال عفونت بیشتر است؟", "options": ["در رفتگی", "شکستگی بسته", "شکستگی باز", "هیچ کدام"]}, {"id": "q148", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "کدام مورد جز علائم و از نشانههای شکستگی است؟", "options": ["درد و محدودیت حرکت", "لمس دردناک و تغییر شکل", "خونریزی", "گزینه های الف و ب .1کدام گزینه جزء عالیم و نشانه ها در موضع شکسته در بدن مصدوم نمی‌باشد؟"]}, {"id": "q149", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "کدام اقدامات در مورد شکستگی نادرست است؟", "options": ["در صورت وجود زخم با چند لایه پانسمان خشک بدون فشار زیاد آن را ببندید", "به مصدوم آب خنک دهید", "عضو آسیب دیده مصدوم را بیحرکت کنید", "مصدوم را به مرکز درمانی انتقال دهید"]}, {"id": "q150", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "کدام یک جز انواع آتلها استفاده نمی‌شود؟", "options": ["چوب", "بالش", "بدن انسان", "اسفنج"]}, {"id": "q151", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "در تعریف انواع آتل برای بیحرکت کردن پای آسیب دیده کدام گزینه ، استفاده از بدن انسان را مجاز می داند؟", "options": ["آتل سخت و غیرقابل انعطاف", "آتل آناتومیک", "آتل نرم", "آتل سیمی"]}, {"id": "q152", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "گ.ح.ح را چه زمانی در آتلبندی کنترل می‌کنیم ؟", "options": ["قبل از آتلبندی", "بعد از آتلبندی", "قبل و بعد از آتلبندی", "نیازی به چک کردن نداریم"]}, {"id": "q153", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "کدام مورد در خصوص ویژگیهای آتل درست است؟", "options": ["آتل یک مفصل بالاتر و یک مفصل پایین‌تر را ثابت نگه دارد", "آتلها دارای زوائد باشد", "آتل بسیار سفت و محکم و سطح سخت داشته باشد", "آتل هم اندازه عضو آسیب دیده باشد و حداکثر یک مفصل را درگیر کند"]}, {"id": "q154", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "کدام مورد در خصوص ترتیب مراحل آتل بندی صحیح است؟", "options": ["خارج کردن لباس -معاینه عضو از نظر تورم- گ.ح.ح - پانسمان زخم باز", "خارج نکردن لباس – گ.ح.ح - آتلبندی- ثابت کردن با باند سه گوش", "خارج کردن لباس- گ.ح.ح - معاینه از نظر تورم -آتلبندی- پانسمان زخم باز", "خارج نکردن لباس -معاینه از نظر تورم- آتلبندی- گ.ح.ح- پانسمان زخم باز"]}, {"id": "q155", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "کدام مورد در خصوص اقدامات زخم همراه شکستگی صحیح است؟", "options": ["آتل را روی زخم قرار دهید", "روی زخم را قبل از آتل بندی پانسمان نکنید", "روی زخم را پانسمان کنید و آتل را روی زخم قرار دهید", "روی زخم را پانسمان کنید و آتل را روی زخم قرار ندهید"]}, {"id": "q156", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "مقوا جز کدام دسته از انواع آتلهاست؟", "options": ["آتل سخت", "آتل نرم", "آتل آناتومیک", "آتل پیش ساخته"]}, {"id": "q157", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "کدام علائم بعد از شکستگی به وجود می‌آید و سریع پیشرفت می‌کند ؟", "options": ["تورم و کبودی", "لمس دردناک", "درد", "زخم باز"]}, {"id": "q158", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "هر شکستگی که لبه تیز قطعه استخوانی پوست را سوراخ کند چه می‌گویند ؟", "options": ["شکستگی باز", "شکستگی بسته", "شکستگی ساده", "شکستگی کامل بسته"]}, {"id": "q159", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "وسیله ای برای جلوگیری از حرکات اضافه و یا ثابت نگه داشتن استخوان آسیب دیده می باشد", "options": ["بانداژ", "آتل", "باند نواری", "پانسمان"]}, {"id": "q160", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "چند مفصل در زمان آتل بندی درگیر می‌شود؟", "options": ["یک مفصل", "حداقل 2 مفصل", "فقط یک مفصل بالاتر از عضو", "یک مفصل بالاتر و یک مفصل پایین تر از عضو آسیب دیده"]}, {"id": "q161", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "گ.ح.ح به ترتیب مخفف چیست؟", "options": ["گردش خون – حرکت – حس", "گردش خون- حس- حرکت", "گرما- حرکت- حس", "گرما- حس- حرکت"]}, {"id": "q162", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "کدام گزینه جمله زیر را کامل می کند؟ \" حمل فرد آسیب دیده از محل خطر به محل امن یا مرکز درمانی ،------------------- انتقال مصدوم می گویند\"", "options": ["با استفاده از برانکارد", "با استفاده از آسانسور", "با استفاده از بکبورد-تخته نخاعی", "الف و ج"]}, {"id": "q163", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "در انتقال و حمل مصدوم، اولویت با کدام مورد است؟", "options": ["حمل های گروهی", "حمل با استفاده از تجهیزات", "حمل انفرادی", "گزینه های الف و ب"]}, {"id": "q164", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "جابجا کردن و حمل مصدوم به چه شرایطی بستگی ندارد؟", "options": ["نوع آسیب مصدوم", "وزن بیمار", "طول مسافت حمل", "زمان حادثه"]}, {"id": "q165", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "حمل مصدوم از نظر تعداد امدادگر، به چند دسته تقسیم می شود؟", "options": ["3 دسته", "5 دسته", "6 دسته", "8 دسته"]}, {"id": "q166", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "گزینه صحیح در انواع حمل مصدوم را تعیین کنید", "options": ["یک نفره- حمل با برانکارد", "دو نفره- چهار نفره- گروهی", "یک نفره- گروهی", "یک نفره- دو نفره- گروهی"]}, {"id": "q167", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "نام دیگر حمل حمایتی --------- است", "options": ["پس و پیش", "عصایی", "کششی", "کولی"]}, {"id": "q168", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "روش عصایی از انواع حمل های ----------- است.", "options": ["حمل انفرادی", "حمل گروهی", "حمل دو نفره", "حمل چهار دست"]}, {"id": "q169", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "جابجائی مصدوم توسط یک امدادگر به روش عصائی چه زمانی انجام می گیرد؟", "options": ["در افراد هوشیار که می توانند با کمک و حمایت راه بروند", "در افراد نیمه هوشیار و بی هوش", "افرادی که آسیب بسیار جدی دیده اند و نمی توانند راه بروند", "افراد سنگین وزن بت صئکه به ناحیه سر"]}, {"id": "q170", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "امدادگر در حمل مصدوم به روش عصایی، در کدام سمت مصدوم قرار می گیرد؟", "options": ["سمت راست مصدوم قرار می گیرد", "سمت چپ مصدوم قرار می گیرد", "براساس شرایط مصدومیت در یک سمت قرار می گیرد", "از پشت مصدوم را کنترل می کند"]}, {"id": "q171", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "در چه مواردی از روش عصایی استفاده می‌شود؟", "options": ["مصدومی که صدمه ی خفیفی دیده است", "مصدومی که با کمک می تواند راه برود", "مصدومی که بیهوش است", "گزینه های الف و ب"]}, {"id": "q172", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "در کدام روش امدادگر به عنوان تکیه گاه و حمایت کننده مصدوم است؟", "options": ["حمل عصایی", "حمل قطاری)پس و پیش(", "حمل با چهار دست )چهارمچ(", "حمل دومچ"]}, {"id": "q173", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "کدام یک از روش های انتقال مصدوم به وسیله ی یک نفر نیست؟", "options": ["روش حمایتی", "روش کششی", "روش حمل قطاری)پس و پیش(", "روش کولی"]}, {"id": "q174", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "کدام گزینه از انواع روش های حمل مصدوم به وسیله یک نفر است؟", "options": ["روش عصایی", "روش کششی", "روش کولی", "حمل های عصایی، کششی، کولی"]}, {"id": "q175", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "کدام روش انتقال یک نفره مصدوم برای مصدومین غیر پاسخگو قابل استفاده نیست؟", "options": ["روش حمایتی", "روش کششی", "روش کولی", "گزینه های الف و ج"]}, {"id": "q176", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "زمانی که یک امدادگر در صحنه حادثه حضور دارد و مصدوم غیر پاسخگو و سنگین وزن است، بهترین روش حمل مصدوم چیست؟", "options": ["عصایی", "کششی", "کولی", "حمایتی"]}, {"id": "q177", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "در محل هایی با ارتفاع کم که امکان انتقال مصدوم به صورت ایستاده نیست، بهترین نوع حمل چیست؟", "options": ["عصایی", "کولی", "دو مچ", "کششی"]}, {"id": "q178", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "کدام گزینه درباره انواع حمل کششی صحیح نیست؟", "options": ["کشیدن مصدوم با لباس", "کشیدن مصدوم با پا", "کشیدن مصدوم با پتو", "کشیدن مصدوم توسط امدادگر"]}, {"id": "q179", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "روش کشیدن مصدوم با لباس برای چه مسیری مناسب است؟", "options": ["مسافت طولانی", "سراشیبی", "مسافت کوتاه", "سربالایی"]}, {"id": "q180", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "در روش کشیدن مصدوم با پتو، امدادگر جهت جابجایی در کدام سمت مصدوم قرار می گیرد؟", "options": ["راست", "چپ", "پا", "سر"]}, {"id": "q181", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "وضعیت قرار گیری امدادگر در روش حمل کششی با لباس چگونه است؟", "options": ["نشسته", "نیم خیز", "ایستاده", "گزینه های الف و ب"]}, {"id": "q182", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "توجه به چه عواملی در انتخاب حمل کششی ضروری است؟", "options": ["مصدوم شکستگی دارد", "مسافت حمل طولانی است", "مصدوم آسیب نخاعی دارد", "مسافت کوتاه و مصدوم بدون شکستگی"]}, {"id": "q183", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "کدام مورد صحیح است؟", "options": ["در حمل های کششی مطمئن باشید که مصدوم هیچ شکستگی ندارد", "در حمل کششی با لباس مراقب باشید لباس به گلوی مصدوم فشار وارد نکند", "از حمل کششی فقط در سطوح صاف و مسافت های کوتاه استفاده نمی‌شود", "گزینه های الف وب"]}, {"id": "q184", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "حمل کولی در چه افرادی قابل استفاده نیست؟", "options": ["مصدومان هوشیاری که قادر به راه رفتن نیستند", "افراد بیهوش", "افراد بدون آسیب اسکلتی", "مصدومان هوشیاری که قادر به راه رفتن هستند"]}, {"id": "q185", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "نام دیگر حمل پس و پیش چیست؟", "options": ["حمل چهار مچ", "حمل دومچ", "حمل قطاری", "حمل عصایی"]}, {"id": "q186", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "روش حمل قطاری)پس و پیش( برای جابجایی کدام‌یک از مصدومان استفاده می شود؟", "options": ["فقط مصدومان هوشیار که قادر به راه رفتن هستند", "مصدوم بی هوش یا هوشیار که دچار آسیب ستون مهره ها شده است", "مصدومانی که دچار شکستگی درناحیه پا هستند", "مصدومینی که از ناحیه سینه و شکم مشکل دارند و همچنین برای عبور از گذرگاه های باریک و یا گذاشتن بیمار بر روی برانکارد استفاده می شود."]}, {"id": "q187", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "در روش حمل قطاری)پس و پیش( ، وضعیت دست های امدادگری که، در پشت مصدوم قرار دارد، چگونه باید باشد؟", "options": ["به صورتی که به قفسه سینه و دستهای مصدوم فشار وارد نکند", "حتما مصدوم باید هوشیار باشد", "بستگی به شکستگی دست دارد", "هر طوری که امدادگر راحت است"]}, {"id": "q188", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "در روش حمل مصدوم قطاری، امدادگر دوم کدام قسمت پای مصدوم را می گیرد؟", "options": ["فقط مچ پاها", "زانوها و مچ پاها", "ساق پاها", "ران پاها"]}, {"id": "q189", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "حمل قطاری )پس و پیش( توسط چند نفر انجام می شود؟", "options": ["یک نفر", "دو نفر", "چهار نفر", "شش نفر"]}, {"id": "q190", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "حملی که در آن امدادگر از پشت مصدوم، و از زیر بغل او را در آغوش می‌گیرد و امدادگر دوم، پشت به مصدوم، زانو یا مچ پاهای او را می گیرد، چه نام دارد؟", "options": ["حمل دومچ", "حمل عصایی", "حمل قطاری)پس و پیش(", "حمل چهار مچ"]}, {"id": "q191", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "در چه مواردی از حمل چهار مچ، استفاده می کنیم؟", "options": ["مصدوم هوشیاری که آسیب جدی ندارد", "مصدوم بی هوشی که آسیب جدی ندارد", "مصدومی که تعادل ندارد", "مصدوم با وزن سنگین"]}, {"id": "q192", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "در روش حمل با چهار مچ، هر امدادگر کدام دست خود را می گیرد؟", "options": ["با دست راست، مچ دست چپ خود را می‌گیرد", "با دست چپ، مچ دست چپ امدادگر را دیگر را می‌گیرد", "با دست راست، مچ دست چپ امدادگر را دیگر را می‌گیرد", "الف و ج"]}, {"id": "q193", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "در چه زمانی می توانیم از روش دو مچ استفاده کنیم؟", "options": ["زمانی که مصدوم نتواند خودش را نگه دارد", "زمانی که مسیر طولانی است", "مصدوم هوشیاری که آسیب جدی دارد", "مصدومین سنگین وزن"]}, {"id": "q194", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "کدام گزینه برای جابه جایی مصدوم بدون آسیب جدی، هوشیار و سبک وزن و ناتوان در راه رفتن، درمسیر طولانی استفاده می‌شود؟", "options": ["حمل با چهار دست یا چهارمچ", "حمل دو مچ", "حمل پس و پیش یا قطاری", "حمل عصائی"]}, {"id": "q195", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "کدام گزینه برای حمل سریع مصدوم سبک وزن و بدون آسیب جدی و ناتوان در راه رفتن، بدون وسیله و در مسیر کوتاه استفاده می‌شود؟", "options": ["حمل دو مچ", "حمل چهار مچ", "حمل با صندلی", "حمل عصائی"]}, {"id": "q196", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "برای حمل دانش آموزی از کلاس طبقه دوم به دفتر معاونت که در طبقه اول است، کدام حمل مناسب تر است؟ \" این دانش آموز روی صندلی تک نفره قرار دارد، سبک وزن و بدون آسیب جدی و عدم توانایی در حفظ تعادل دارد\"", "options": ["حمل صندلی", "حمل عصایی", "حمل قطاری", "حمل کششی"]}, {"id": "q197", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "این جمله درباره کدام گزینه است؟ \"وسیله ای برای حمل و جابجایی مصدومان بدحال با آسیب های شدید در مسافت های طولانی\"", "options": ["حمل صندلی", "حمل با پتو", "حمل با برانکارد", "حمل با تسمه"]}, {"id": "q198", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "برانکارد در چه مواقعی کاربرد ندارد؟", "options": ["حمل مصدوم با وزن سنگین", "مصدومی که دچار آسیب های شدید در اندام ها شده است", "حمل مصدوم در مسیر طولانی", "مصدوم می تواند بدون مشکل راه برود"]}, {"id": "q199", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "حمل با برانکارد معمولا با چه تعدادی قابل اجرا است؟", "options": ["8 نفره", "4 نفره", "یک نفره", "3 نفره"]}, {"id": "q200", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "کدام نکته مهم در حمل با برانکارد از اهمیت کمتری برخوردار است؟", "options": ["حفظ تعادل مصدوم", "یکنواخت گام برداشتن امدادگران", "کشیدگی و هم سطح بودن دستان امدادگران", "سن بیمار"]}, {"id": "q201", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "در چه صورت در هنگام حمل مصدوم با برانکارد، مصدوم از سمت پا حمل می شود؟", "options": ["سراشیبی", "سربالایی", "آمبوالنس", "گزینه های ب و ج"]}, {"id": "q202", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "نکته مهم در انتقال مصدوم بر روی برانکارد یا بکبورد کدام است؟", "options": ["محافظت از شکستگی و ناحیه آتل بندی", "محافظت از سر و گردن مصدوم", "کمک گرفتن از خود مصدوم در حین انتقال", "گزینه های الف و ب"]}, {"id": "q203", "chapter": "فصل ششم انتقال و حمل مصدوم", "question": "بهترین شرایط انتخاب حمل مصدوم با بکبورد، کدام است؟", "options": ["گرفتن بکبورد توسط 3 نفر به همراه یک سرتیم", "گرفتن بکبورد توسط 6 نفر و یک سرتیم", "گرفتن بکبورد توسط 2 نفر در مسیر طولانی", "استفاده از بکبورد در مسیر طولانی"]}, {"id": "q204", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "کدام اقدام در خاموش کردن حریق وسایل برقی نادرست است؟", "options": ["قطع برق در اولین اقدام", "استفاده از آب برای خاموش کردن آتش", "استفاده از کپسول برای خاموش کردن آتش", "استفاده از پتو برای خاموش کردن آتش"]}, {"id": "q205", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "کدام اقدام در روش سرد کردن موثر نیست؟", "options": ["با پاشیدن آب، مواد مشتعل را خنک کنیم", "پایین آوردن دما", "حذف گرما از حریق", "حذف اکسیژن از حریق"]}, {"id": "q206", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "استفاده از حوله خیس برای اطفای حریق، در کدام دسته از روش های اطفا، قرار می‌گیرد؟", "options": ["سرد کردن", "خفه کردن", "دور کردن مواد", "جدا سازی"]}, {"id": "q207", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "دستهبندی آتشها شامل کدام گروه می‌شود؟", "options": ["ABCDH", "ABCDEF", "CDGEF", "ABCRF"]}, {"id": "q208", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "کدام تعریف در خصوص سوختگی کاملتر است؟", "options": ["از بین رفتن پیوستگی پوست", "ایجاد ضایعات در اثر عبور جریان برق", "ایجاد ضایعات در اثر حرارت شدید ،تماس با مواد شیمیایی و عبور جریان برق", "آسیب در اثر تماس با مواد شیمیایی"]}, {"id": "q209", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "در کدام یک از گروه بندی های آتش، خاکستر به جا می‌ماند؟", "options": ["A", "B", "C", "D"]}, {"id": "q210", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "اشتعال با موادی مانند الکل در کدام کلاس بندی آتش قرار می‌گیرند؟", "options": ["A", "B", "C", "D"]}, {"id": "q211", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "علامت ستاره نارنجی مربوط به کدام کلاس بندی آتش است؟", "options": ["A", "B", "C", "D"]}, {"id": "q212", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "علامت کلاس بندی B در آتش سوزی ها ، کدام گزینه است ؟", "options": ["مثلث سبز", "مربع قرمز", "دایره آبی", "ستاره نارنجی"]}, {"id": "q213", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "آتش سوزی فلزات، جز کدام کلاس بندی آتش سوزی است؟", "options": ["A", "B", "C", "D"]}, {"id": "q214", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "کدام وسیله صرفا،ً برای اطفای حریق در وسعت محدود و حجم کم ساخته شده است است؟", "options": ["خاموش کننده دستی", "شلنگهای آب", "سطلهای فلزی", "خودروهای آتش نشانی"]}, {"id": "q215", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "بهترین روش برای خروج از محلی که آنجا را دود فرا گرفته، کدام است؟", "options": ["چهار دست و پا یا سینه خیز با استفاده از ماسک تنفسی", "ایستاده و عبور کردن از دود", "چهار دست و پا ، سینه خیز و بدون استفاده از دستمال خیس", "دویدن سریع در محیط دود گرفته"]}, {"id": "q216", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "مهمترین کار در زمان استفاده از خاموش کنندهها کدام است ؟", "options": ["رو به باد به سمت آتش بایستیم", "پشت به باد و رو به آتش بایستیم", "قبل از کشیدن ضامن کپسول دسته اهرم را فشار می دهیم", "در هنگام پاشیدن مواد روی آتش، کپسول را تکان می دهیم"]}, {"id": "q217", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "روشهای کلی در اطفای حریق شامل کدام موارد زیر می‌باشد؟", "options": ["خفه کردن و جدا سازی و آب پاشی", "سرد کردن ، خفه کردن و جوش آوردن", "قطع برق و واکنشهای زنجیره ای", "خفه کردن، سردکردن، دور کردن مواد سوختنی"]}, {"id": "q218", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "کدام گزینه جزءروش کلی در اطفای حریق نمی‌باشد؟", "options": ["خفه کردن", "سردکردن", "دور کردن مواد سوختی", "هوارسانی"]}, {"id": "q219", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "کدام دسته بندی آتش شامل گاز طبیعی و شهری است ؟ و علامت طبقه آن چیست؟", "options": ["کلاس B -علامت مثلث سبز", "کلاس C -علامت دایره آبی", "کلاس E -علامت مربع قرمز", "کلاس C -علامت ستاره نارنجی"]}, {"id": "q220", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "کدام گزینه نادرست است؟", "options": ["اولین اقدام در مواجه با آتش سوزی وسایل گاز سوز ، بستن شیر اصلی گاز است", "اگر روغن خوراکی دچار حریق شد، درپوشی بزرگتر از ظرف روی آن بگذارید", "چنانچه لباستان آتش گرفت روی زمین افتاده و به دور خود بغلتید", "صحبت کردن با موبایل یا تبلت در حال اتصال به پریز برق جهت شارژ کردن بلامانع است"]}, {"id": "q221", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "مثلث حریق شامل چه عناصری می‌باشد؟", "options": ["ماده سوختنی، ماده شیمیایی، اکسیژن", "اکسیژن ، واکنش زنجیره ای، نقطه احتراق", "گرما، نقطه شعله زنی ، ماده سوختنی", "ماده سوختنی، اکسیژن و گرما"]}, {"id": "q222", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "در کدام سوختگی فقط لایه بیرونی پوست آسیب می‌بیند ؟", "options": ["سوختگی سطحی درجه1", "سوختگی نیمه عمیق درجه2", "سوختگی عمیق درجه3", "سوختگیهای شدید"]}, {"id": "q223", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "کدام سوختگی همراه با تاول قابل توجه است؟", "options": ["سوختگی سطحی", "سوختگی نیمه عمیق", "سوختگی عمیق", "سوختگی درجه 1"]}, {"id": "q224", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "در کدام سوختگی، رنگ پریدگی پوست و یا تیرگی و زغالی شدن آن وجود دارد؟", "options": ["سوختگی سطحی", "سوختگی نیمه عمیق", "سوختگی عمیق", "سوختگی درجه 1"]}, {"id": "q225", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "آفتاب سوختگی جز کدام دسته بندی های سوختگی است؟", "options": ["سوختگی درجه 2", "سوختگی نیمه عمیق", "سوختگی درجه 3", "سوختگی درجه1"]}, {"id": "q226", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "در کدام سوختگی ABC بیمار چک می‌شود و به سرعت به بیمارستان انتقال داده می شود", "options": ["سوختگی سطحی", "سوختگی نیمه عمیق", "سوختگی درجه 3", "سوختگی درجه2"]}, {"id": "q227", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "کدام اقدام در مورد سوختگی نادرست است؟", "options": ["محل سوختگی را با یک لایه نازک سلفون بپوشانیم", "تاول ها را سوراخ نکنیم", "اگر بیمار قادر به نوشیدن است مایعات به مصدوم بدهیم این کار در تمام درجات سوختگی بلامانع است", "لباس های چسبیده به محل زخم را جدا نکنیم"]}, {"id": "q228", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "اگر در آپارتمانی در ساختمان چند طبقه بودیم، کدام اقدام در زمان حریق درست است؟", "options": ["ماندن در همان طبقه", "به آپارتمان مجاور رفته و درب آپارتمان خود را باز می‌گذارید", "استفاده از آسانسور", "در صورتی که مجبور شدید به طبقات بالا روید ، درب ها رو ببندید"]}, {"id": "q229", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "مراحل استفاده از کپسول آتش نشانی به ترتیب کدام است؟", "options": ["پشت به باد ایستادن- نشانه گیری شیلنگ به مرکز حریق- کشیدن ضامن- فشار دادن اهرم کپسول", "پشت به باد ایستادن- کشیدن ضامن- فشار دادن اهرم کپسول - نشانه گیری شیلنگ به مرکز حریق", "رو به باد ایستادن- کشیدن ضامن- فشار دادن اهرم کپسول - نشانه گیری شیلنگ به مرکز حریق", "رو به باد ایستادن- نشانه گیری شیلنگ به مرکز حریق- کشیدن ضامن- فشار دادن اهرم کپسول"]}, {"id": "q230", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "اطفای حریق از کدام قسمت آتش شروع می شود؟", "options": ["بالای حریق و از بالای شعله به سمت کانون حریق", "فقط کانون حریق در صورت مشاهده", "از زیر حریق", "از کناره و اطراف حریق شروع می کنیم"]}, {"id": "q231", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "مهمترین نکته در خروج سریع از محل حریق کدام است؟", "options": ["جمع کردن وسایل همراه و خارج شدن سریع از محل حریق", "خروج از آخرین نفر داخل کلاس", "توجه به حریق و تلاش بدون وسیله برای اطفای حریق", "خروج سریع با دهان بسته و حرکت به سمت درب خروج در سطح پایین)خمیده("]}, {"id": "q232", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "اولین اقدام بعد از مشاهده حریق گسترده کدام است؟", "options": ["اطفای سریع حریق با وسایل موجود", "کمک رسانی به مصدومان", "تماس با 125", "ارزیابی اولیه از حریق همراه با خطرات احتمالی و تماس با آشنایان"]}, {"id": "q233", "chapter": "فصل هشتم اسکان اضطراری", "question": "جنس چادر امدادی معمولاً از چه موادی ساخته شده است؟", "options": ["برزنت – کاغذ - ریسمان", "کتان – برزنت - کاغذ", "نایلون ضخیم-چوب- الیاف", "برزنت – کتان- نایلون ضخیم"]}, {"id": "q234", "chapter": "فصل هشتم اسکان اضطراری", "question": "اولین اقدام برای برپایی چادر کدام است؟", "options": ["دو نفر از افراد گروه 7 نفره آنرا به محل حمل می‌کنند", "باید ابتدا باد قالب و شیب زمین بررسی شود", "کیف یا جعبه چادر توسط دو نفر اول گشوده شود", "برنامهریزی ، تقسیم وظایف و زمین محل نصب چادر مورد توجه قرار گیرد"]}, {"id": "q235", "chapter": "فصل هشتم اسکان اضطراری", "question": "شیب زمین معمولاً برای استقرار چادر چه اندازه باید باشد", "options": ["1 تا 2 درجه", "3 تا 10 درجه", "11 تا 15 درجه", "شیب زمین اهمیتی ندارد"]}, {"id": "q236", "chapter": "فصل هشتم اسکان اضطراری", "question": "برای نصب اسکلت چادر، ابتداء کدام قطعههای زیر باید کامل شود؟", "options": ["4 تکه اصلی پایه و 6 قطعه رابط سقفی", "4 قطعه 3 تکه ای سقفی و 6 قطعه پایه", "6 قطعه اصلی سقف 4 قطعه رابط", "سه قطعه ی4 تیکه ای اصلی سقف و 6 قطعه رابط"]}, {"id": "q237", "chapter": "فصل هشتم اسکان اضطراری", "question": "تعداد بندهای متصل به بدنه چادر کدام گزینه است؟", "options": ["24 بند", "30بند", "22 بند", "30 بند"]}, {"id": "q238", "chapter": "فصل هشتم اسکان اضطراری", "question": "زاویهی میخ های مهار چادر در زمین چند درجه است و چه مقدار از آن باید در داخل زمین فرو برود؟", "options": ["زاویه 50 درجه - دو سوم میخ در زمین", "زاویه 45 درجه - نصف میخ در زمین", "زاویه 45 درجه – دو سوم میخ در زمین", "زاویه 40 درجه– یک سوم میخ در زمین"]}, {"id": "q239", "chapter": "فصل هشتم اسکان اضطراری", "question": "محلی که برای اقامت امن و بهداشتی آسیب دیدگان برپا می‌شود و از 1 تا چند ماه طول می‌کشد تعریف کدام گزینه زیر است؟", "options": ["سرپناه", "اسکان اضطراری", "اسکان دائم", "اسکان موقت"]}, {"id": "q240", "chapter": "فصل هشتم اسکان اضطراری", "question": "عبارت است ازیک مکان فیزیکی، به عنوان نیاز اولیه و اساسی خانوار، که در این مکان برخی از نیازهای اولیه خانواده یا فرد مانند خوراک، استراحت و حفاظت در برابر شرایط جوی تأمین می شود", "options": ["اسکان موقت", "خیمه", "سرپناه", "چادر"]}, {"id": "q241", "chapter": "فصل هشتم اسکان اضطراری", "question": "از خصوصیات اسکان موقت نیست؟", "options": ["بالفاصله بعد از وقوع حوادث طبیعی برپا می‌شود", "تا چندین ماه ارائه خدمت می‌کند", "تا بازگشت افراد آسیب دیده برپا می‌ماند", "جهت اقامت امن و بهداشتی آسیب دیدگان است"]}, {"id": "q242", "chapter": "فصل هشتم اسکان اضطراری", "question": "در بین این گزینه ها، آخرین مرحله نصب چادر کدام است؟", "options": ["زدن گره به میخ ها", "کوبیدن میخ ها برزمین", "نصب روکش ضد آب چادر بر روی اسکلت", "تنظیم چادر متناسب با وزش باد"]}, {"id": "q243", "chapter": "فصل هشتم اسکان اضطراری", "question": "برای نصب اسکلت چادر تیپ 2 ابتدا کدام قسمت آن را کامل می‌کنیم؟", "options": ["سقف", "4 پایه اصلی", "تمام پایه ها", "قطعههای رابط"]}, {"id": "q244", "chapter": "فصل هشتم اسکان اضطراری", "question": "کدام گزینه در خصوص سرپناه نادرست است؟", "options": ["حفاظت افراد در برابر خورشید، باران، باد و برف", "ایجاد حس اعتماد به نفس", "ایجاد فضای امن مطلق", "محل اجتماع اعضای خانواده"]}, {"id": "q245", "chapter": "فصل هشتم اسکان اضطراری", "question": "کدام گزینه درباره تفاوت انواع سرپناه صحیح نیست؟", "options": ["نوع زمین", "تعداد ساکنین", "جنس چادر", "نوع استفاده، اسکلت نگهدارنده چادر"]}, {"id": "q246", "chapter": "فصل هشتم اسکان اضطراری", "question": "کدام گزینه از کاربردها و تعاریف چادر امدادی نمی باشد؟", "options": ["جهت اقامت آسیب دیدگان ناشی از وقوع حوادث و سوانح است، که بالفاصه با سهولت برپا می‌گردد", "سازه ای است که از پیش ساخته شده و معمولاً از جنس برزنت، نایلون ضخیم ، چوب ، فلز و غیره می باشد که در اندازههای مختلف برپا می‌شود", "سرپناهی دائمی است که درحوادث و سوانح، برنامه های موقت نظامی و--- از آن استفاده می شود", "بالفاصله بعد از وقوع حوادث طبیعی غیر منتظره توسط دولت و نهاد های امدادی با سایر اقدامات خدماتی برپا می‌شود"]}, {"id": "q247", "chapter": "مقدمات", "question": "نشان و علامت کمیته بین‌المللی صلیب سرخ در ابتدای تشکیل چه بود؟", "options": ["برگردان رنگ و نماد پرچم کشور سوییس", "صلیبی سرخ بر زمینه‌ای سفید", "صلیبی سفید بر زمینه‌ای سرخ", "گزینه‌های الف و ب"]}, {"id": "q248", "chapter": "فصل اول مخاطرات طبیعی", "question": "در ایمن‌سازی اجزای غیر سازه‌ای، درب خروجی کلاس‌ها، آزمایشگاه و سایر اماکن چگونه باید باز شوند؟", "options": ["باید به داخل باز شوند", "باید درب نداشته باشند", "درب آن‌ها برقی باشد", "باید به خارج باز شوند"]}, {"id": "q249", "chapter": "فصل دوم ایمنی ، ارزیابی و کنترل علائم حیاتی", "question": "افراد بالغ به طور طبیعی تقریباً بین ...... تا ...... بار در دقیقه و کودکان تقریباً بین ...... تا ...... بار در دقیقه به‌طور منظم نفس می‌کشند؟", "options": ["12 تا 20 و 20 تا 30", "20 تا 15 و 20 تا 30", "15 تا 10 و 15 تا 30", "نامشخص"]}, {"id": "q250", "chapter": "فصل پنجم آسیب های دستگاه اسکلتی و مفصلی", "question": "برای آتل‌بندی در شکستگی ساق پا، به چه تعداد باند سه‌گوش نیاز است؟", "options": ["2 تا 3 باند سه‌گوش", "4 تا 5 باند سه‌گوش", "6 تا 7 باند سه‌گوش", "8 تا 12 باند سه‌گوش"]}, {"id": "q251", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "شماره تماس آتش‌نشانی کدام است؟", "options": ["112", "125", "110", "115"]}, {"id": "q252", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "کدام تعریف در مورد آتش درست است؟", "options": ["انرژی گرمایی و نور ناشی از سوختن است", "در اثر واکنش شیمیایی آزاد می‌شود", "حاصل سوختن یک شیء یا ماده است", "انرژی گرمایی و نور که در اثر یک واکنش شیمیایی و حاصل سوختن و احتراق یک شیء است"]}, {"id": "q253", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "چه مدت زمان با آب خنک، محل سوختگی را سرد می‌کنیم؟", "options": ["10 دقیقه", "20 دقیقه", "30 دقیقه", "40 دقیقه"]}, {"id": "q254", "chapter": "فصل هفتم اطفا حریق و سوختگی", "question": "معمولاً دانش‌آموزان کپسول‌های اطفای حریق را تا چه وزنی می‌توانند حمل کنند؟", "options": ["5 تا 6 کیلوگرمی", "1 تا 3 کیلوگرمی", "7 تا 9 کیلوگرمی", "10 تا 14 کیلوگرمی"]}, {"id": "q255", "chapter": "فصل هشتم اسکان اضطراری", "question": "فاصله میخ‌های مهار از دیوار چادر حدوداً چند متر می‌باشد؟", "options": ["2 تا 2.5 متر", "75 سانتی‌متر تا 1.20 متر", "1.5 تا 2 متر", "متناسب با چادرهای مجاور"]}];
+
+const LETTERS = ['الف', 'ب', 'ج', 'د'];
+
+/* ====================== STORAGE HELPERS ======================
+   داده‌ها همینجا، داخل خود مرورگر (localStorage) ذخیره می‌شوند.
+   نیازی به هیچ سرور یا اینترنتی نیست — فقط کافیست همین فایل
+   HTML را در مرورگر باز کنید. نکته مهم: این داده‌ها فقط روی
+   همین مرورگر و همین کامپیوتر ذخیره می‌مانند (نه بین چند
+   دستگاه به اشتراک گذاشته می‌شوند و نه اگر Cache/History مرورگر
+   پاک شود باقی می‌مانند).
+================================================================ */
+const STORAGE_PREFIX = 'quiz_dadras_';
+
+async function apiGet(key) {
+  try {
+    const value = localStorage.getItem(STORAGE_PREFIX + key);
+    return value; // localStorage خودش null برمی‌گرداند اگر نبود
+  } catch (e) {
+    console.error('خطا در خواندن از حافظه مرورگر', e);
+    return null;
+  }
+}
+
+async function apiSet(key, value) {
+  try {
+    localStorage.setItem(STORAGE_PREFIX + key, value);
+    return { ok: true };
+  } catch (e) {
+    console.error('خطا در ذخیره‌سازی در حافظه مرورگر', e);
+    throw e;
+  }
+}
+
+async function sha256(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(x => x.toString(16).padStart(2, '0')).join('');
+}
+
+// هش پیش‌فرض رمز عبور "1863" — برای تغییر، رمز جدید را در کنسول با تابع sha256 هش کنید
+const ADMIN_PASS_HASH = '9b5173ba93decd311f89513f060a62d652ec189f0dba97db15c2a07787add029';
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function esc(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+/* ====================== APP STATE ====================== */
+const DEFAULT_ANSWER_KEY = {"q1":2,"q2":1,"q3":2,"q4":1,"q5":0,"q6":3,"q7":0,"q8":1,"q9":2,"q10":3,"q11":1,"q12":2,"q13":3,"q14":0,"q15":0,"q16":1,"q17":2,"q18":2,"q19":3,"q20":1,"q21":0,"q22":0,"q23":0,"q24":0,"q25":0,"q26":3,"q27":3,"q28":1,"q29":0,"q30":3,"q31":0,"q32":0,"q33":1,"q34":2,"q35":3,"q36":0,"q37":1,"q38":0,"q39":0,"q40":0,"q41":1,"q42":2,"q43":1,"q44":1,"q45":2,"q46":1,"q47":1,"q48":3,"q49":0,"q50":0,"q51":2,"q52":2,"q53":3,"q54":0,"q55":1,"q56":0,"q57":2,"q58":1,"q59":2,"q60":2,"q61":1,"q62":2,"q63":0,"q64":0,"q65":2,"q66":2,"q67":3,"q68":1,"q69":2,"q70":0,"q71":1,"q72":3,"q73":1,"q74":0,"q75":0,"q76":2,"q77":0,"q78":3,"q79":2,"q80":3,"q81":2,"q82":2,"q83":0,"q84":0,"q85":2,"q86":1,"q87":0,"q88":0,"q89":0,"q90":2,"q91":0,"q92":1,"q93":1,"q94":1,"q95":0,"q96":1,"q97":2,"q98":1,"q99":0,"q100":2,"q101":0,"q102":0,"q103":1,"q104":1,"q105":2,"q106":2,"q107":2,"q108":2,"q109":1,"q110":0,"q111":0,"q112":0,"q113":0,"q114":0,"q115":0,"q116":1,"q117":3,"q118":2,"q119":0,"q120":0,"q121":3,"q122":0,"q123":0,"q124":0,"q125":3,"q126":0,"q127":0,"q128":1,"q129":0,"q130":1,"q131":0,"q132":0,"q133":2,"q134":0,"q135":0,"q136":0,"q137":1,"q138":0,"q139":0,"q140":0,"q141":0,"q142":1,"q143":1,"q144":1,"q145":1,"q146":0,"q147":2,"q148":3,"q149":0,"q150":2,"q151":1,"q152":2,"q153":0,"q154":0,"q155":0,"q156":0,"q157":0,"q158":0,"q159":0,"q160":1,"q161":0,"q162":3,"q163":3,"q164":3,"q165":0,"q166":3,"q167":1,"q168":0,"q169":0,"q170":0,"q171":1,"q172":0,"q173":2,"q174":2,"q175":0,"q176":1,"q177":2,"q178":1,"q179":1,"q180":2,"q181":2,"q182":3,"q183":0,"q184":2,"q185":2,"q186":2,"q187":0,"q188":1,"q189":1,"q190":2,"q191":0,"q192":0,"q193":0,"q194":0,"q195":0,"q196":0,"q197":2,"q198":2,"q199":1,"q200":2,"q201":0,"q202":0,"q203":0,"q204":0,"q205":2,"q206":1,"q207":1,"q208":0,"q209":0,"q210":0,"q211":1,"q212":1,"q213":1,"q214":0,"q215":0,"q216":2,"q217":2,"q218":3,"q219":0,"q220":0,"q221":2,"q222":0,"q223":1,"q224":2,"q225":3,"q226":2,"q227":0,"q228":1,"q229":0,"q230":0,"q231":0,"q232":0,"q233":3,"q234":2,"q235":1,"q236":2,"q237":0,"q238":0,"q239":2,"q240":2,"q241":0,"q242":0,"q243":0,"q244":0,"q245":0,"q246":0,"q247":2,"q248":3,"q249":0,"q250":1,"q251":1,"q252":1,"q253":0,"q254":1,"q255":2};
+
+const state = {
+  screen: 'loading',
+  answerKey: { ...DEFAULT_ANSWER_KEY },
+  results: [],
+  quizLength: 20,
+  timeLimit: 0,
+  studentName: '',
+  quizQuestions: [],
+  quizAnswers: {},
+  quizCurrent: 0,
+  quizSecondsLeft: null,
+  quizTimerHandle: null,
+  quizAutoSubmitted: false,
+  lastResult: null,
+  adminFilter: 'all',
+  adminChapterFilter: 'all',
+  statsTab: 'overview',
+  expandedStudent: null,
+};
+
+const app = document.getElementById('app');
+
+function goto(screen) {
+  state.screen = screen;
+  render();
+}
+
+/* ====================== INITIAL LOAD ====================== */
+async function init() {
+  try {
+    const ak = await apiGet('answerKey');
+    if (ak) state.answerKey = { ...DEFAULT_ANSWER_KEY, ...JSON.parse(ak) };
+  } catch (e) { console.error(e); }
+  try {
+    const rs = await apiGet('results');
+    if (rs) state.results = JSON.parse(rs);
+  } catch (e) { console.error(e); }
+  try {
+    const ql = await apiGet('quizLength');
+    if (ql) state.quizLength = parseInt(ql, 10) || 20;
+  } catch (e) { console.error(e); }
+  try {
+    const tl = await apiGet('timeLimit');
+    if (tl) state.timeLimit = parseInt(tl, 10) || 0;
+  } catch (e) { console.error(e); }
+  goto('home');
+}
+
+/* ====================== RENDER ROUTER ====================== */
+function render() {
+  switch (state.screen) {
+    case 'loading': return renderLoading();
+    case 'home': return renderHome();
+    case 'adminLogin': return renderAdminLogin();
+    case 'adminPanel': return renderAdminPanel();
+    case 'stats': return renderStats();
+    case 'student': return renderStudentStart();
+    case 'quiz': return renderQuiz();
+    case 'result': return renderResult();
+    default: return renderHome();
+  }
+}
+
+function screenShell(innerHtml) {
+  app.innerHTML = `<div class="screen"><div class="wrap">${innerHtml}</div></div>`;
+}
+
+function topBar(title, backScreen) {
+  return `
+    <div class="topbar">
+      ${backScreen ? `<button class="btn-back" onclick="goto('${backScreen}')">بازگشت</button>` : ''}
+      <h1>${esc(title)}</h1>
+    </div>`;
+}
+
+/* ====================== LOADING ====================== */
+function renderLoading() {
+  screenShell(`<div class="loading">در حال بارگذاری…</div>`);
+}
+
+/* ====================== HOME ====================== */
+function renderHome() {
+  screenShell(`
+    <div class="brand-banner">
+      <div class="brand-name">محمد امین دشتبان</div>
+      <div class="brand-sub">طراحی و توسعه</div>
+    </div>
+    <div class="home-title">
+      <div class="hero-circle">+</div>
+      <h1>آزمون دادرس</h1>
+      <p>بانک سوالات نهضت صلیب سرخ و هلال احمر</p>
+    </div>
+    <div class="stack">
+      <div class="card" onclick="goto('student')">
+        <div class="card-icon">📝</div>
+        <div>
+          <div class="card-title">شرکت در آزمون</div>
+          <div class="card-desc">دانش‌آموزان اینجا کلیک کنند</div>
+        </div>
+      </div>
+      <div class="card" onclick="goto('adminLogin')">
+        <div class="card-icon">🔑</div>
+        <div>
+          <div class="card-title">پنل معلم</div>
+          <div class="card-desc">تعیین پاسخ صحیح و مشاهده آمار</div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:36px; font-size:12px; color:var(--muted);">
+      طرح ملی دادرس · جمعیت هلال احمر
+    </div>
+  `);
+}
+
+/* ====================== ADMIN LOGIN ====================== */
+function renderAdminLogin() {
+  screenShell(`
+    ${topBar('ورود معلم', 'home')}
+    <div class="card" style="display:block; cursor:default;">
+      <input type="password" id="adminPass" placeholder="رمز عبور" />
+      <div id="loginErr" class="error-text hidden">رمز اشتباه است.</div>
+      <div style="margin-top:16px;">
+        <button class="btn btn-primary" id="loginBtn" onclick="submitAdminLogin()">ورود</button>
+      </div>
+    </div>
+  `);
+  document.getElementById('adminPass').addEventListener('keydown', e => {
+    if (e.key === 'Enter') submitAdminLogin();
+  });
+}
+
+async function submitAdminLogin() {
+  const pass = document.getElementById('adminPass').value;
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true;
+  btn.textContent = 'در حال بررسی…';
+  const hash = await sha256(pass);
+  if (hash === ADMIN_PASS_HASH) {
+    goto('adminPanel');
+  } else {
+    document.getElementById('loginErr').classList.remove('hidden');
+    btn.disabled = false;
+    btn.textContent = 'ورود';
+  }
+}
+
+/* ====================== ADMIN PANEL ====================== */
+function renderAdminPanel() {
+  const chapters = ['all', ...Array.from(new Set(QUESTIONS.map(q => q.chapter)))];
+  const doneCount = Object.keys(state.answerKey).length;
+
+  const visible = QUESTIONS.filter(q => {
+    if (state.adminChapterFilter !== 'all' && q.chapter !== state.adminChapterFilter) return false;
+    if (state.adminFilter === 'done') return state.answerKey[q.id] !== undefined;
+    if (state.adminFilter === 'pending') return state.answerKey[q.id] === undefined;
+    return true;
+  });
+
+  screenShell(`
+    ${topBar('پنل معلم', 'home')}
+    <div class="flex-wrap-row">
+      <div class="card" style="flex:1; min-width:140px; padding:14px 16px;" onclick="goto('stats')">
+        <div class="card-icon">📊</div>
+        <div>
+          <div class="card-title">مشاهده آمار کامل</div>
+          <div class="card-desc">نمرات، پیشرفت و پاسخ‌های اشتباه</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="cursor:default; justify-content:space-between; margin-bottom:16px;">
+      <div style="font-size:14px; font-weight:700;">${doneCount} از ${QUESTIONS.length} سوال دارای پاسخ صحیح</div>
+      <div id="savingIndicator" style="font-size:12px; color:var(--muted);"></div>
+    </div>
+
+    <div class="card" style="display:block; cursor:default; margin-bottom:16px;">
+      <div style="font-size:14px; font-weight:700; margin-bottom:10px;">تعداد سوالات هر آزمون</div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <input type="number" id="lengthInput" min="1" max="${QUESTIONS.length}" value="${state.quizLength}" style="width:100px;" />
+        <button class="btn btn-secondary" style="padding:10px 18px; font-size:14px;" onclick="saveQuizLength()">ذخیره</button>
+        <span style="font-size:13px; color:var(--muted);">سوال (فعلی: ${state.quizLength} از ${QUESTIONS.length} سوال موجود)</span>
+      </div>
+    </div>
+
+    <div class="card" style="display:block; cursor:default; margin-bottom:16px;">
+      <div style="font-size:14px; font-weight:700; margin-bottom:10px;">مهلت زمانی آزمون</div>
+      <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+        <input type="number" id="timeLimitInput" min="0" max="600" value="${state.timeLimit}" style="width:100px;" />
+        <button class="btn btn-secondary" style="padding:10px 18px; font-size:14px;" onclick="saveTimeLimit()">ذخیره</button>
+        <span style="font-size:13px; color:var(--muted);">دقیقه (فعلی: ${state.timeLimit === 0 ? 'بدون محدودیت زمانی' : state.timeLimit + ' دقیقه'})</span>
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin-top:8px;">
+        عدد ۰ یعنی بدون محدودیت زمانی. اگر مهلت تمام شود، آزمون دانش‌آموز به‌طور خودکار با پاسخ‌های ثبت‌شده تا آن لحظه پایان می‌یابد.
+      </div>
+    </div>
+
+    <div style="margin-bottom:12px;">
+      ${['all', 'pending', 'done'].map(f => `
+        <button class="filter-chip ${state.adminFilter === f ? 'active' : ''}" onclick="setAdminFilter('${f}')">
+          ${f === 'all' ? 'همه' : f === 'pending' ? 'بدون پاسخ' : 'دارای پاسخ'}
+        </button>`).join('')}
+    </div>
+
+    <select id="chapterFilter" style="margin-bottom:20px;" onchange="setAdminChapterFilter(this.value)">
+      ${chapters.map(c => `<option value="${esc(c)}" ${state.adminChapterFilter === c ? 'selected' : ''}>${c === 'all' ? 'همه فصل‌ها' : esc(c)}</option>`).join('')}
+    </select>
+
+    <div>
+      ${visible.map(q => renderAdminQuestion(q)).join('')}
+    </div>
+  `);
+}
+
+function renderAdminQuestion(q) {
+  const chosen = state.answerKey[q.id];
+  return `
+    <div class="qcard" style="border-color:${chosen !== undefined ? 'var(--crescent)' : 'var(--border)'};">
+      <div class="qchapter">${esc(q.chapter)}</div>
+      <div class="qtext">${esc(q.question)}</div>
+      <div>
+        ${q.options.map((opt, idx) => `
+          <label class="opt-row" style="border-color:${chosen === idx ? 'var(--good)' : 'var(--border)'}; background:${chosen === idx ? 'var(--goodBg)' : 'transparent'};">
+            <span class="opt-letter">${LETTERS[idx]}</span>
+            <span style="flex:1; min-width:0;">${esc(opt)}</span>
+            <input type="radio" name="${q.id}" ${chosen === idx ? 'checked' : ''} onchange="setAnswer('${q.id}', ${idx})" />
+          </label>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function setAdminFilter(f) { state.adminFilter = f; render(); }
+function setAdminChapterFilter(c) { state.adminChapterFilter = c; render(); }
+
+async function setAnswer(qid, idx) {
+  state.answerKey = { ...state.answerKey, [qid]: idx };
+  render();
+  const indicator = document.getElementById('savingIndicator');
+  if (indicator) indicator.textContent = 'در حال ذخیره…';
+  try {
+    await apiSet('answerKey', JSON.stringify(state.answerKey));
+  } catch (e) { console.error(e); }
+  const indicator2 = document.getElementById('savingIndicator');
+  if (indicator2) indicator2.textContent = '';
+}
+
+async function saveQuizLength() {
+  const input = document.getElementById('lengthInput');
+  const n = Math.max(1, Math.min(QUESTIONS.length, parseInt(input.value, 10) || 20));
+  state.quizLength = n;
+  render();
+  try { await apiSet('quizLength', String(n)); } catch (e) { console.error(e); }
+}
+
+async function saveTimeLimit() {
+  const input = document.getElementById('timeLimitInput');
+  const n = Math.max(0, Math.min(600, parseInt(input.value, 10) || 0));
+  state.timeLimit = n;
+  render();
+  try { await apiSet('timeLimit', String(n)); } catch (e) { console.error(e); }
+}
+
+/* ====================== STUDENT START ====================== */
+function renderStudentStart() {
+  const readyCount = Object.keys(state.answerKey).length;
+  const canStart = readyCount >= 4;
+  const actualCount = Math.min(state.quizLength, readyCount);
+
+  screenShell(`
+    ${topBar('شرکت در آزمون', 'home')}
+    <div class="card" style="display:block; cursor:default;">
+      <label style="font-size:14px; font-weight:700; display:block; margin-bottom:8px;">نام و نام خانوادگی</label>
+      <input type="text" id="studentNameInput" placeholder="مثال: علی رضایی" />
+      ${state.timeLimit > 0 ? `
+        <div style="margin-top:14px; font-size:13px; color:var(--crescent); background:var(--goodBg); padding:10px 12px; border-radius:10px;">
+          ⏱ این آزمون ${state.timeLimit} دقیقه مهلت دارد. بعد از شروع، تایمر فعال می‌شود.
+        </div>` : ''}
+      ${!canStart ? `
+        <div style="margin-top:14px; font-size:13px; color:var(--bad); line-height:1.8;">
+          هنوز معلم پاسخ کافی برای سوالات مشخص نکرده است. لطفاً بعداً دوباره تلاش کنید.
+        </div>` : ''}
+      <div style="margin-top:18px;">
+        <button class="btn btn-primary" id="startBtn" ${!canStart ? 'disabled' : ''} onclick="handleStartQuiz()">
+          شروع آزمون (${actualCount} سوال)
+        </button>
+      </div>
+    </div>
+  `);
+
+  const nameInput = document.getElementById('studentNameInput');
+  const startBtn = document.getElementById('startBtn');
+  nameInput.addEventListener('input', () => {
+    startBtn.disabled = !nameInput.value.trim() || !canStart;
+  });
+  startBtn.disabled = !nameInput.value.trim() || !canStart;
+}
+
+function handleStartQuiz() {
+  const name = document.getElementById('studentNameInput').value.trim();
+  if (!name) return;
+  state.studentName = name;
+
+  const eligible = QUESTIONS.filter(q => state.answerKey[q.id] !== undefined);
+  const count = Math.min(state.quizLength, eligible.length);
+  state.quizQuestions = shuffle(eligible).slice(0, count);
+  state.quizAnswers = {};
+  state.quizCurrent = 0;
+  state.quizAutoSubmitted = false;
+  state.quizSecondsLeft = state.timeLimit > 0 ? state.timeLimit * 60 : null;
+
+  goto('quiz');
+  startQuizTimer();
+}
+
+/* ====================== QUIZ ====================== */
+function startQuizTimer() {
+  if (state.quizTimerHandle) clearInterval(state.quizTimerHandle);
+  if (state.quizSecondsLeft === null) return;
+
+  state.quizTimerHandle = setInterval(() => {
+    if (state.quizSecondsLeft === null) return;
+    state.quizSecondsLeft -= 1;
+    if (state.quizSecondsLeft <= 0) {
+      clearInterval(state.quizTimerHandle);
+      if (!state.quizAutoSubmitted) {
+        state.quizAutoSubmitted = true;
+        finishQuiz();
+      }
+      return;
+    }
+    updateTimerDisplay();
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const el = document.getElementById('timerBadge');
+  if (!el || state.quizSecondsLeft === null) return;
+  const m = Math.floor(state.quizSecondsLeft / 60);
+  const s = state.quizSecondsLeft % 60;
+  const warning = state.quizSecondsLeft <= 60;
+  el.textContent = `⏱ ${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+  el.style.color = warning ? 'var(--bad)' : 'var(--crescent)';
+  el.style.background = warning ? 'var(--badBg)' : 'var(--goodBg)';
+}
+
+function renderQuiz() {
+  const q = state.quizQuestions[state.quizCurrent];
+  if (!q) return renderHome();
+  const isLast = state.quizCurrent === state.quizQuestions.length - 1;
+  const chosen = state.quizAnswers[q.id];
+
+  let timerHtml = '';
+  if (state.quizSecondsLeft !== null) {
+    const m = Math.floor(state.quizSecondsLeft / 60);
+    const s = state.quizSecondsLeft % 60;
+    const warning = state.quizSecondsLeft <= 60;
+    timerHtml = `<span id="timerBadge" class="timer-badge" style="color:${warning ? 'var(--bad)' : 'var(--crescent)'}; background:${warning ? 'var(--badBg)' : 'var(--goodBg)'};">⏱ ${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}</span>`;
+  }
+
+  screenShell(`
+    <div style="margin-bottom:16px;">
+      <div class="quiz-meta">
+        <span>${esc(state.studentName)}</span>
+        <span>سوال ${state.quizCurrent + 1} از ${state.quizQuestions.length}</span>
+        ${timerHtml}
+      </div>
+      <div class="progressbar">
+        <div class="progressbar-fill" style="width:${((state.quizCurrent + 1) / state.quizQuestions.length) * 100}%;"></div>
+      </div>
+    </div>
+
+    <div class="card" style="display:block; cursor:default; margin-bottom:20px;">
+      <div class="qchapter">${esc(q.chapter)}</div>
+      <div style="font-size:17px; font-weight:800; line-height:1.8; margin-bottom:20px;">${esc(q.question)}</div>
+      <div>
+        ${q.options.map((opt, idx) => `
+          <div class="option-box ${chosen === idx ? 'selected' : ''}" onclick="selectQuizOption('${q.id}', ${idx})">
+            <span class="option-letter-circle ${chosen === idx ? 'selected' : ''}">${LETTERS[idx]}</span>
+            <span style="flex:1; min-width:0;">${esc(opt)}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="nextBtn" style="width:100%;" ${chosen === undefined ? 'disabled' : ''} onclick="nextQuizQuestion()">
+      ${isLast ? 'پایان آزمون' : 'سوال بعدی'}
+    </button>
+  `);
+}
+
+function selectQuizOption(qid, idx) {
+  state.quizAnswers = { ...state.quizAnswers, [qid]: idx };
+  render();
+}
+
+function nextQuizQuestion() {
+  const isLast = state.quizCurrent === state.quizQuestions.length - 1;
+  if (isLast) {
+    if (state.quizTimerHandle) clearInterval(state.quizTimerHandle);
+    finishQuiz();
+  } else {
+    state.quizCurrent += 1;
+    render();
+  }
+}
+
+async function finishQuiz() {
+  let score = 0;
+  const perQuestion = [];
+  const withCorrect = state.quizQuestions.map(q => {
+    const correctIdx = state.answerKey[q.id];
+    const chosenIdx = state.quizAnswers[q.id];
+    const correct = chosenIdx === correctIdx;
+    if (correct) score++;
+    perQuestion.push({ qid: q.id, chosenIdx, correct });
+    return { ...q, _correctIdx: correctIdx };
+  });
+
+  const timestamp = Date.now();
+  state.lastResult = {
+    studentName: state.studentName,
+    score,
+    total: state.quizQuestions.length,
+    quizQuestions: withCorrect,
+    answers: state.quizAnswers,
+    timestamp,
+  };
+
+  const newResults = [...state.results, {
+    studentName: state.studentName,
+    score,
+    total: state.quizQuestions.length,
+    timestamp,
+    perQuestion,
+  }];
+  state.results = newResults;
+  try {
+    await apiSet('results', JSON.stringify(newResults));
+  } catch (e) { console.error(e); }
+
+  goto('result');
+}
+
+/* ====================== RESULT ====================== */
+function renderResult() {
+  const r = state.lastResult;
+  if (!r) return renderHome();
+  const percent = Math.round((r.score / r.total) * 100);
+
+  screenShell(`
+    <div style="text-align:center; margin-bottom:24px; margin-top:10px;">
+      <div class="result-circle" style="background:${percent >= 50 ? 'var(--good)' : 'var(--bad)'};">${percent}%</div>
+      <h2 style="font-size:20px; font-weight:800; margin:0 0 6px;">${esc(r.studentName)} عزیز</h2>
+      <p style="color:var(--muted); font-size:15px; margin:0;">نمره شما: ${r.score} از ${r.total}</p>
+    </div>
+    <div style="margin-bottom:24px;">
+      ${r.quizQuestions.map((q, i) => renderResultQuestion(q, i, r.answers)).join('')}
+    </div>
+    <button class="btn btn-primary" style="width:100%;" onclick="goto('home')">بازگشت به صفحه اصلی</button>
+  `);
+}
+
+function renderResultQuestion(q, i, answers) {
+  const userAns = answers[q.id];
+  const correctIdx = q._correctIdx;
+  const isCorrect = userAns === correctIdx;
+  return `
+    <div class="qcard" style="border-color:${isCorrect ? '#3A2226' : '#5A1A24'}; border-width:1.5px; ${!isCorrect ? 'box-shadow:0 0 0 1px rgba(255,51,85,0.15);' : ''}">
+      <div style="display:flex; gap:8px; align-items:flex-start; margin-bottom:10px;">
+        <span style="font-size:18px;">${isCorrect ? '✅' : '❌'}</span>
+        <div style="font-size:14px; font-weight:700; line-height:1.7;">${i + 1}. ${esc(q.question)}</div>
+      </div>
+      <div style="font-size:13px; color:var(--muted); margin-right:26px;">
+        پاسخ شما: ${userAns !== undefined ? `${LETTERS[userAns]} - ${esc(q.options[userAns])}` : '—'}
+      </div>
+      ${!isCorrect ? `
+        <div style="font-size:13px; color:var(--good); margin-right:26px; margin-top:4px;">
+          پاسخ صحیح: ${LETTERS[correctIdx]} - ${esc(q.options[correctIdx])}
+        </div>` : ''}
+    </div>
+  `;
+}
+
+/* ====================== STATS ====================== */
+function renderStats() {
+  const results = state.results;
+  const answerKey = state.answerKey;
+  const n = results.length;
+  const avgPercent = n ? results.reduce((s, r) => s + (r.score / r.total) * 100, 0) / n : 0;
+  const bestPercent = n ? Math.max(...results.map(r => (r.score / r.total) * 100)) : 0;
+  const worstPercent = n ? Math.min(...results.map(r => (r.score / r.total) * 100)) : 0;
+  const passCount = results.filter(r => (r.score / r.total) * 100 >= 50).length;
+
+  screenShell(`
+    ${topBar('آمار کامل آزمون', 'adminPanel')}
+    <div class="tab-row">
+      ${[['overview','نمای کلی'],['compare','مقایسه دانش‌آموزان'],['students','جزئیات هرکس'],['questions','سوالات پرخطا']].map(([key,label]) => `
+        <button class="tab-btn ${state.statsTab === key ? 'active' : ''}" onclick="setStatsTab('${key}')">${label}</button>
+      `).join('')}
+    </div>
+    <div id="statsContent"></div>
+  `);
+
+  const container = document.getElementById('statsContent');
+  if (state.statsTab === 'overview') {
+    container.innerHTML = renderStatsOverview(results, answerKey, n, avgPercent, bestPercent, worstPercent, passCount);
+    renderProgressChart(results, avgPercent);
+  } else if (state.statsTab === 'compare') {
+    container.innerHTML = renderStatsCompare(results, avgPercent);
+  } else if (state.statsTab === 'students') {
+    container.innerHTML = renderStatsStudents(results, answerKey, avgPercent);
+  } else if (state.statsTab === 'questions') {
+    container.innerHTML = renderStatsQuestions(results);
+  }
+}
+
+function setStatsTab(tab) { state.statsTab = tab; render(); }
+
+function renderStatsOverview(results, answerKey, n, avgPercent, bestPercent, worstPercent, passCount) {
+  return `
+    <div class="flex-wrap-row">
+      <div class="stat-card"><div class="stat-label">تعداد آزمون‌های انجام‌شده</div><div class="stat-value">${n}</div></div>
+      <div class="stat-card"><div class="stat-label">میانگین کل نمرات</div><div class="stat-value">${avgPercent.toFixed(1)}%</div></div>
+      <div class="stat-card">
+        <div class="stat-label">درصد قبولی (≥۵۰٪)</div>
+        <div class="stat-value">${n ? Math.round((passCount / n) * 100) + '%' : '—'}</div>
+        <div class="stat-sub">${passCount} از ${n} آزمون</div>
+      </div>
+    </div>
+    <div class="flex-wrap-row">
+      <div class="stat-card"><div class="stat-label">بهترین نمره</div><div class="stat-value">${n ? bestPercent.toFixed(0) + '%' : '—'}</div></div>
+      <div class="stat-card"><div class="stat-label">ضعیف‌ترین نمره</div><div class="stat-value">${n ? worstPercent.toFixed(0) + '%' : '—'}</div></div>
+      <div class="stat-card"><div class="stat-label">سوالات دارای پاسخ</div><div class="stat-value">${Object.keys(answerKey).length}/${QUESTIONS.length}</div></div>
+    </div>
+    <div id="progressChartWrap"></div>
+  `;
+}
+
+function renderProgressChart(results, avgPercent) {
+  const wrap = document.getElementById('progressChartWrap');
+  if (!wrap || results.length === 0) return;
+  const chrono = [...results].sort((a, b) => a.timestamp - b.timestamp);
+  let runningSum = 0;
+  const series = chrono.map((r, i) => {
+    runningSum += (r.score / r.total) * 100;
+    return { cumulativeAvg: runningSum / (i + 1), percent: (r.score / r.total) * 100, name: r.studentName };
+  });
+
+  wrap.innerHTML = `
+    <div class="card" style="display:block; cursor:default;">
+      <div style="font-size:15px; font-weight:800; margin-bottom:14px;">روند میانگین پیشرفت (تجمعی بر اساس ترتیب زمانی آزمون‌ها)</div>
+      <div style="display:flex; align-items:flex-end; gap:4px; height:140px; overflow-x:auto; padding-bottom:6px;">
+        ${series.map((p, i) => `
+          <div title="${esc(p.name)}: ${p.percent.toFixed(0)}% (میانگین تجمعی تا این نفر: ${p.cumulativeAvg.toFixed(1)}%)" style="display:flex; flex-direction:column; align-items:center; gap:4px; min-width:22px;">
+            <div style="width:16px; height:${Math.max(4, p.cumulativeAvg / 100 * 120)}px; background:var(--crescent); border-radius:3px;"></div>
+            <div style="font-size:9px; color:var(--muted);">${i + 1}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div style="font-size:12px; color:var(--muted); margin-top:10px;">
+        هر ستون میانگین تجمعی نمرات تا آن لحظه را نشان می‌دهد. با نگه‌داشتن نشانگر روی هر ستون جزئیات دیده می‌شود.
+      </div>
+    </div>
+  `;
+}
+
+function renderStatsCompare(results, avgPercent) {
+  const byStudent = {};
+  results.forEach(r => {
+    const percent = (r.score / r.total) * 100;
+    if (!byStudent[r.studentName]) {
+      byStudent[r.studentName] = { name: r.studentName, attempts: 0, best: percent, last: percent, lastTs: r.timestamp, sum: 0 };
+    }
+    const rec = byStudent[r.studentName];
+    rec.attempts++;
+    rec.sum += percent;
+    if (percent > rec.best) rec.best = percent;
+    if (r.timestamp >= rec.lastTs) { rec.last = percent; rec.lastTs = r.timestamp; }
+  });
+  const studentRows = Object.values(byStudent)
+    .map(s => ({ ...s, avg: s.sum / s.attempts, diffFromClassAvg: (s.sum / s.attempts) - avgPercent }))
+    .sort((a, b) => b.avg - a.avg);
+
+  if (studentRows.length === 0) {
+    return `<div style="text-align:center; color:var(--muted); padding:40px 0;">هنوز کسی در آزمون شرکت نکرده است.</div>`;
+  }
+
+  const maxAvg = Math.max(...studentRows.map(s => s.avg), 100);
+
+  return `
+    <div class="card" style="cursor:default; font-size:13px; color:var(--muted); margin-bottom:16px;">
+      میانگین کلاس: <b style="color:var(--ink);">${avgPercent.toFixed(1)}%</b> — دانش‌آموزان بر اساس میانگین نمرات (بهترین در بالا) رتبه‌بندی شده‌اند.
+    </div>
+    <div>
+      ${studentRows.map((s, i) => {
+        const barWidth = Math.max(3, (s.avg / maxAvg) * 100);
+        const aboveAvg = s.diffFromClassAvg >= 0;
+        const medalBg = i === 0 ? '#F4C542' : i === 1 ? '#C7CBD1' : i === 2 ? '#D8A265' : 'var(--sand-deep)';
+        const medalColor = i <= 2 ? '#1a1210' : 'var(--muted)';
+        return `
+          <div class="qcard">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; gap:8px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:${medalBg}; color:${medalColor}; border:${i > 2 ? '1.5px solid var(--border)' : 'none'}; font-size:12px; font-weight:900; flex-shrink:0;">${i + 1}</span>
+                <span style="font-weight:700; font-size:14px;">${esc(s.name)}</span>
+                <span style="font-size:11px; color:var(--muted);">(${s.attempts} آزمون)</span>
+              </div>
+              <div style="text-align:left;">
+                <div style="font-size:15px; font-weight:900;">${s.avg.toFixed(1)}%</div>
+                <div style="font-size:11px; color:${aboveAvg ? 'var(--good)' : 'var(--bad)'};">
+                  ${aboveAvg ? '▲' : '▼'} ${Math.abs(s.diffFromClassAvg).toFixed(1)}٪ ${aboveAvg ? 'بالاتر از میانگین' : 'پایین‌تر از میانگین'}
+                </div>
+              </div>
+            </div>
+            <div style="height:10px; background:var(--sand-deep); border:1px solid var(--border); border-radius:5px; overflow:hidden;">
+              <div style="height:100%; width:${barWidth}%; border-radius:5px; background:${s.avg >= 50 ? 'var(--good)' : 'var(--bad)'};"></div>
+            </div>
+            <div style="font-size:11px; color:var(--muted); margin-top:6px; display:flex; gap:12px;">
+              <span>بهترین نمره: ${s.best.toFixed(0)}%</span>
+              <span>آخرین نمره: ${s.last.toFixed(0)}%</span>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function renderStatsStudents(results, answerKey, avgPercent) {
+  const sorted = [...results].sort((a, b) => b.timestamp - a.timestamp);
+  if (sorted.length === 0) {
+    return `<div style="text-align:center; color:var(--muted); padding:40px 0;">هنوز کسی در آزمون شرکت نکرده است.</div>`;
+  }
+
+  return `
+    <div>
+      ${sorted.map((r, i) => {
+        const percent = Math.round((r.score / r.total) * 100);
+        const isOpen = state.expandedStudent === i;
+        const wrongItems = (r.perQuestion || []).filter(pq => !pq.correct);
+        const diff = percent - avgPercent;
+        return `
+          <div class="qcard" style="padding:0; overflow:hidden;">
+            <div style="padding:14px 16px; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="toggleStudent(${i})">
+              <div>
+                <div style="font-weight:700; font-size:15px;">${esc(r.studentName)}</div>
+                <div style="font-size:12px; color:var(--muted); margin-top:2px;">
+                  ${new Date(r.timestamp).toLocaleString('fa-IR')} ${r.perQuestion ? `· ${wrongItems.length} پاسخ اشتباه` : ''}
+                  ·
+                  <span style="color:${diff >= 0 ? 'var(--good)' : 'var(--bad)'};">${diff >= 0 ? '+' : ''}${diff.toFixed(0)}٪ نسبت به میانگین کلاس</span>
+                </div>
+              </div>
+              <div style="font-size:15px; font-weight:900; color:${percent >= 50 ? 'var(--good)' : 'var(--bad)'};">${r.score}/${r.total} (${percent}%)</div>
+            </div>
+            ${isOpen ? `
+              <div style="border-top:1px solid var(--border); padding:12px 16px; background:var(--sand-deep);">
+                ${!r.perQuestion ? `<div style="font-size:12px; color:var(--muted);">جزئیات سوالات برای این آزمون ثبت نشده (آزمون قدیمی).</div>` : ''}
+                ${r.perQuestion && wrongItems.length === 0 ? `<div style="font-size:13px; color:var(--good); font-weight:700;">همه پاسخ‌ها صحیح بود 🎉</div>` : ''}
+                ${r.perQuestion ? wrongItems.map((pq, j) => {
+                  const q = QUESTIONS.find(x => x.id === pq.qid);
+                  if (!q) return '';
+                  return `
+                    <div style="margin-bottom:10px; padding-bottom:10px; border-bottom:${j < wrongItems.length - 1 ? '1px solid var(--border)' : 'none'};">
+                      <div style="font-size:13px; font-weight:700; margin-bottom:4px; line-height:1.7;">${esc(q.question)}</div>
+                      <div style="font-size:12px; color:var(--bad);">پاسخ داده‌شده: ${LETTERS[pq.chosenIdx]} - ${esc(q.options[pq.chosenIdx])}</div>
+                      <div style="font-size:12px; color:var(--good);">پاسخ صحیح: ${LETTERS[answerKey[q.id]]} - ${esc(q.options[answerKey[q.id]])}</div>
+                    </div>
+                  `;
+                }).join('') : ''}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function toggleStudent(i) {
+  state.expandedStudent = state.expandedStudent === i ? null : i;
+  render();
+}
+
+function renderStatsQuestions(results) {
+  const questionStats = {};
+  results.forEach(r => {
+    if (!r.perQuestion) return;
+    r.perQuestion.forEach(pq => {
+      if (!questionStats[pq.qid]) questionStats[pq.qid] = { total: 0, wrong: 0, wrongBy: [] };
+      questionStats[pq.qid].total++;
+      if (!pq.correct) {
+        questionStats[pq.qid].wrong++;
+        questionStats[pq.qid].wrongBy.push({ student: r.studentName });
+      }
+    });
+  });
+
+  const rows = Object.entries(questionStats)
+    .map(([qid, stat]) => {
+      const q = QUESTIONS.find(x => x.id === qid);
+      return { qid, q, ...stat, wrongRate: stat.total ? (stat.wrong / stat.total) * 100 : 0 };
+    })
+    .filter(r => r.total > 0)
+    .sort((a, b) => b.wrongRate - a.wrongRate);
+
+  if (rows.length === 0) {
+    return `<div style="text-align:center; color:var(--muted); padding:40px 0;">هنوز داده‌ای برای تحلیل سوالات ثبت نشده است.</div>`;
+  }
+
+  return `
+    <div>
+      ${rows.map(row => `
+        <div class="qcard">
+          <div style="display:flex; justify-content:space-between; gap:10px; margin-bottom:6px;">
+            <div style="font-size:13px; font-weight:700; line-height:1.7;">${esc(row.q ? row.q.question : row.qid)}</div>
+            <div style="font-size:13px; font-weight:900; color:${row.wrongRate > 50 ? 'var(--bad)' : 'var(--muted)'}; white-space:nowrap;">
+              ${row.wrong}/${row.total} اشتباه (${row.wrongRate.toFixed(0)}%)
+            </div>
+          </div>
+          ${row.wrongBy.length > 0 ? `
+            <div style="font-size:12px; color:var(--muted); margin-top:6px;">
+              اشتباه‌کنندگان: ${row.wrongBy.map(w => esc(w.student)).join('، ')}
+            </div>` : ''}
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+/* ====================== BOOT ====================== */
+init();
+</script>
+</body>
+</html>
